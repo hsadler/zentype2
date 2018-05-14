@@ -8,8 +8,8 @@ services:
     build:
       context: .
       dockerfile: 'Dockerfile'
-    image: flask-vue
-    container_name: flask-vue
+    image: zentype
+    container_name: zentype
     restart: always
     links:
       - mysql:mysql
@@ -22,7 +22,7 @@ services:
 
   mysql:
     image: mysql:5.7
-    container_name: flask-vue-mysql
+    container_name: zentype-mysql
     restart: always
     volumes:
      - ./mysql_store:/var/lib/mysql
@@ -32,7 +32,7 @@ services:
 
   adminer:
     image: adminer:4.6.2
-    container_name: flask-vue-adminer
+    container_name: zentype-adminer
     restart: always
     links:
       - mysql:mysql
@@ -41,7 +41,7 @@ services:
 
   redis:
     image: redis:4.0.9-alpine
-    container_name: flask-vue-redis
+    container_name: zentype-redis
     restart: always
     volumes:
      - ./redis_store:/data
