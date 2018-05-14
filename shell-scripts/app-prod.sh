@@ -1,2 +1,2 @@
 
-docker exec -it flask-vue /bin/sh
+docker exec -it zentype /bin/sh

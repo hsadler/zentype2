@@ -1,2 +1,2 @@
 
-docker exec -it flask-vue-mysql mysql -uroot -ppassword
+docker exec -it zentype-mysql mysql -uroot -ppassword
