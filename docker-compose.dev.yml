@@ -38,7 +38,7 @@ services:
      - ./mysql_store_dev:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=flask_vue_project_seed
+      - MYSQL_DATABASE=zentype
 
   adminer:
     image: adminer:4.6.2

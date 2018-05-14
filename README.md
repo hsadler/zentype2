@@ -1,5 +1,5 @@
 
-# zentype2
+# zentype
 
 > A learn-to-type app for kids.
 
