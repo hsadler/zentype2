@@ -1,0 +1,41 @@
+
+- brainstorm app items, tables and schema, architectures
+	- user
+	- word
+	- typing_test
+	- achievments
+
+- build basic user login
+	- user table
+	- authentication backend architecture
+		- jwt tokens (in cache?, need to research)
+		- limit some API endpoints to authed users
+		- consider other authentication problems
+			- ex. user should only be able to edit their information and no one
+				elses
+	- authentication web client architecture
+		- limit some pages to authed users
+
+- build WPM typing test
+	- get_wpm_typing_test() GET endpoint
+		- possible params: difficulty, test length
+		- fetch words from db
+		- build test and return
+		- perhaps store pending tests in db or cache
+		- choose whether or not test results calculations are done on FE or BE
+	- submit_wpm_typing_test() POST endpoint
+		- send all words and timings
+		- store test_result with user_id
+		- think about ways to prevent forged requests cheating
+
+- build user profile
+	- user status, activity, achievements
+	- summary of user test stats
+	- graphs of progress
+	- test history
+	- test are viewable with granular information display
+
+- build user community
+	- profiles of other users are viewable
+	- other users can be followed/friended
+
