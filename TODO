@@ -1,11 +1,14 @@
 
+
+GENERAL TODO:
+
 - brainstorm app items, tables and schema, architectures
 	- user
 	- word
 	- typing_test
 	- achievments
 
-- build basic user login
+- build user auth
 	- user table
 	- authentication backend architecture
 		- jwt tokens (in cache?, need to research)
@@ -38,4 +41,63 @@
 - build user community
 	- profiles of other users are viewable
 	- other users can be followed/friended
+
+
+USER AUTH TODO:
+
+- stub out classes and methods
+	- user_data_object
+	- user_auth service
+	- user_auth_api
+		- signup()
+		- login()
+		- verify_user_token()
+
+- research JWT authentication
+	- how to use with flask and Blueprints?
+	- look into method decorators for enforcing auth on endpoints
+
+- create user mysql table
+	- draft schema
+
+- fully implement backend
+
+- implement web client
+
+
+WPM TYPING TEST TODO:
+
+- gather word library
+	- download/scrape from sources
+	- possible rating systems: difficulty, popularity, length
+	- searchable by letter contents (reverse indexing with ElasticSearch?)
+	- consider punctuation
+
+- test building
+	- possible params: difficulty, length
+	- build offline with cron?
+
+- test assignment to user
+	- pending tests await results from client
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
