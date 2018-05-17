@@ -73,13 +73,33 @@ WPM TYPING TEST TODO:
 	- searchable by letter contents (reverse indexing with ElasticSearch?)
 	- consider punctuation
 
-- test building
+- test builder
 	- possible params: difficulty, length
 	- build offline with cron?
 
 - test assignment to user
 	- pending tests await results from client
 
+- receive and store test results
+	- how granular?
+
+
+USER PROFILE TODO:
+
+- user information
+	- track activity
+	- track achievements
+	- track test history
+	- aggregate test data for summary
+
+
+USER COMMUNITY TODO:
+
+- profiles of other users are viewable
+	- web client should present stranger user profiles differently than owned
+
+- other users can be followed/friended
+	- consider system for storing user follows
 
 
 
