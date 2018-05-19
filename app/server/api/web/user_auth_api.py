@@ -10,7 +10,7 @@ from service.wall_messages import WallMessages
 user_auth_api = Blueprint('user_auth_api', __name__)
 
 
-@web_wall_messages_api.route('/signup', methods=['POST'])
+@user_auth_api.route('/signup', methods=['POST'])
 def signup():
 	"""
 	Sign-up user for a ZenType account.
@@ -32,7 +32,7 @@ def signup():
 	return jsonify(res)
 
 
-@web_wall_messages_api.route('/login', methods=['POST'])
+@user_auth_api.route('/login', methods=['POST'])
 def login():
 	"""
 	Login user to ZenType account.
@@ -54,7 +54,7 @@ def login():
 	return jsonify(res)
 
 
-@web_wall_messages_api.route('/validate-token', methods=['POST'])
+@user_auth_api.route('/validate-token', methods=['POST'])
 def validate_token():
 	"""
 	Validate user's token for authentication.
