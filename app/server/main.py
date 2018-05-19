@@ -16,6 +16,7 @@ app = Flask(
 # register api routes
 from api.web.wall_messages_api import web_wall_messages_api
 app.register_blueprint(web_wall_messages_api, url_prefix='/api/wall-messages')
+app.register_blueprint(user_auth_api, url_prefix='/api/user-auth')
 
 
 # serve index for non-API calls
