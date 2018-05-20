@@ -12,12 +12,13 @@ mysql_driver = MySqlDriver(
 )
 
 create_table_query = """
-	CREATE TABLE IF NOT EXISTS wall_message (
+	CREATE TABLE IF NOT EXISTS user (
 		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		created_ts INT(11) NOT NULL,
 		updated_ts INT(11) NOT NULL,
-		message VARCHAR(1000),
-		attribution VARCHAR(255)
+		# table specific columns here:
+		email VARCHAR(255),
+		password_hash VARCHAR(255)
 	)
 """
 query_result = mysql_driver.query(query_string=create_table_query)

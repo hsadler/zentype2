@@ -2,10 +2,10 @@
 # Base Data Object
 
 import sys
+import json
 import config.config as config
 
 from abc import ABCMeta, abstractmethod
-import json
 
 
 class BaseDataObject(metaclass=ABCMeta):

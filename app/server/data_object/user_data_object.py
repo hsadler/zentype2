@@ -15,5 +15,5 @@ class UserDataObject(BaseDataObject):
 	TABLE_NAME = 'user'
 	DEFAULT_DB_DRIVER_CLASS = MySqlDriver
 	DEFAULT_CACHE_DRIVER_CLASS = RedisDriver
-	DEFAULT_CACHE_TTL = 86400
+	DEFAULT_CACHE_TTL = 3600
 

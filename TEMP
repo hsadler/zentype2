@@ -2,7 +2,12 @@
 
 // test POST requests with curl:
 
-curl -d '{"email":"q@q.com", "password":"pass"}' \
+curl -d '{"email":"qq@q.com", "password":"pass"}' \
 -H "Content-Type: application/json" \
 -X POST http://localhost:4000/api/user-auth/signup
 
+
+// mysql stuff:
+
+ALTER TABLE user
+ADD UNIQUE (email);
