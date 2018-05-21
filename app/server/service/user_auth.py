@@ -33,7 +33,7 @@ class UserAuth():
 		userDO = UserDataObject.create(prop_dict=create_props)
 		userDO = userDO.save()
 		if userDO is not None:
-			return userDO.to_dict()
+			return userDO
 		else:
 			return None
 

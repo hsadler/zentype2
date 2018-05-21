@@ -2,8 +2,10 @@
 
 # User Authentication API
 
-
 from flask import Blueprint, jsonify, request
+from flask_jwt_simple import (
+	jwt_required, create_jwt, get_jwt_identity
+)
 
 from data_store.cache_driver.redis_driver import RedisDriver
 from service.user_auth import UserAuth
@@ -21,23 +23,20 @@ def signup():
 	user_email = r.get('email', None)
 	user_password = r.get('password', None)
 
-	userData = UserAuth.signup(email=user_email, password=user_password)
+	userDO = UserAuth.signup(
+		email=user_email,
+		password=user_password
+	)
 
-	# TODO: if the user is created successfully, give them a jwt token
-
-	if userData is not None:
+	if userDO is not None:
+		# if the user was created successfully, give them a jwt token
+		token = create_jwt(identity=userDO.to_dict())
 		res = {
 			'success': True,
-			'result': {
-				'message': 'user has been signed up',
-				'email': user_email,
-				'password': user_password
-			}
+			'result': { 'token': token }
 		}
 	else:
-		res = {
-			'success': False
-		}
+		res = { 'success': False }
 
 	return jsonify(res)
 
@@ -64,24 +63,33 @@ def login():
 	return jsonify(res)
 
 
-@user_auth_api.route('/validate-token', methods=['POST'])
-def validate_token():
-	"""
-	Validate user's token for authentication.
+# TODO: DON'T THINK THIS IS NEEDED
+# @user_auth_api.route('/validate-token', methods=['POST'])
+# def validate_token():
+# 	"""
+# 	Validate user's token for authentication.
 
-	"""
+# 	"""
 
-	# TODO
-	r = request.get_json()
-	user_token = r['token']
-	res = {
-		'success': True,
-		'result': {
-			'message': 'user\'s token has been validated',
-			'token': user_token
-		}
-	}
-	return jsonify(res)
+# 	# TODO
+# 	r = request.get_json()
+# 	user_token = r['token']
+# 	res = {
+# 		'success': True,
+# 		'result': {
+# 			'message': 'user\'s token has been validated',
+# 			'token': user_token
+# 		}
+# 	}
+# 	return jsonify(res)
+
+
+# test jwt
+@user_auth_api.route('/protected', methods=['GET'])
+@jwt_required
+def protected():
+	# Access the identity of the current user with get_jwt_identity
+	return jsonify({'hello_from': get_jwt_identity()}), 200
 
 
 

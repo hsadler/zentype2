@@ -1,16 +1,27 @@
 
 from flask import (
-    Flask,
-    render_template,
-    jsonify
+	Flask,
+	render_template,
+	jsonify
 )
+from flask_jwt_simple import JWTManager
+from datetime import timedelta
+
+import config.config_secrets as config_secrets
+
 
 # init Flask app instance
 app = Flask(
-    __name__,
-    static_folder='../client/dist/static',
-    template_folder='../client/dist'
+	__name__,
+	static_folder='../client/dist/static',
+	template_folder='../client/dist'
 )
+# jwt setup
+app.config['JWT_SECRET_KEY'] = config_secrets.JWT_SECRET_KEY
+# TODO: change the expire duration to something more suitable (1 week?)
+app.config['JWT_EXPIRES'] = timedelta(minutes=1)
+jwt = JWTManager(app)
+
 
 
 # register api routes
@@ -24,12 +35,12 @@ app.register_blueprint(user_auth_api, url_prefix='/api/user-auth')
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return render_template('index.html')
+	return render_template('index.html')
 
 
 # run the app if executed as main file to python interpreter
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+	app.run(host='0.0.0.0', port=80)
 
 
 

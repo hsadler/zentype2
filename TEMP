@@ -2,9 +2,27 @@
 
 // test POST requests with curl:
 
-curl -d '{"email":"qq@q.com", "password":"pass"}' \
+curl -d '{"email":"qqqq@q.com", "password":"pass"}' \
 -H "Content-Type: application/json" \
 -X POST http://localhost:4000/api/user-auth/signup
+
+
+// test jwt with curl:
+
+// without token
+$ curl http://localhost:4000/api/user-auth/protected
+
+// get token with login
+curl -d '{"email":"a@q.com", "password":"pass"}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:4000/api/user-auth/signup
+
+// todo: refresh token
+
+// test protected endpoint with token
+curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjY4NjIxNDcsImlhdCI6MTUyNjg2MjA4NywibmJmIjoxNTI2ODYyMDg3LCJzdWIiOnsiaWQiOjYsImNyZWF0ZWRfdHMiOjE1MjY4NjIwODcsInVwZGF0ZWRfdHMiOjE1MjY4NjIwODcsImVtYWlsIjoiYUBxLmNvbSIsInBhc3N3b3JkX2hhc2giOiJlY2ViOTUxOGFkNjdhNTU2Yjc2NDc3NzBmMWJlZDI0NmYyYjNmNGYwMDM3MTAzZTIxNTU2MGMyMzJkY2JlMDY2ZDU1OGY5OTMyMGJhMGQ0MjFhNTJkMjA2MDE5MjQ1NTQxYzZlNzg1MWRjMmZiZDgxMGQ4NGFmYWRiZGI0ZjY5OCJ9fQ.OiVSi0MAk1zbU9B97YLj1ApY2FneelOra9I0wTMgk8E" \
+http://localhost:4000/api/user-auth/protected
+
 
 
 // mysql stuff:
