@@ -322,6 +322,19 @@ class BaseDataObject(metaclass=ABCMeta):
 		return db_driver, cache_driver
 
 
+	@classmethod
+	def get_drivers(cls, db_driver_class=None, cache_driver_class=None):
+		"""
+		Public version of the __get_drivers() private method
+
+		"""
+
+		return cls.__get_drivers(
+			db_driver_class=db_driver_class,
+			cache_driver_class=cache_driver_class
+		)
+
+
 	def __get_prop_names(self):
 		return self.db_driver.get_table_field_names(self.TABLE_NAME)
 

@@ -19,9 +19,7 @@ class UserAuth():
 	def create_new_user(cls, email, password):
 
 		# attempt to find existing user by email
-		find_props = { 'email': email }
-		# TODO: optimize with find_by_email() method
-		existing_userDO = UserDataObject.find_one(prop_dict=find_props)
+		existing_userDO = UserDataObject.find_by_email(email=email)
 		if existing_userDO is not None:
 			return None
 
@@ -40,9 +38,7 @@ class UserAuth():
 	def find_user_and_validate_password(cls, email, password):
 
 		# attempt to find user by email
-		find_props = { 'email': email }
-		# TODO: optimize with find_by_email() method
-		userDO = UserDataObject.find_one(prop_dict=find_props)
+		userDO = UserDataObject.find_by_email(email=email)
 
 		# if user exists, compare hashed passwords
 		if userDO is not None:
