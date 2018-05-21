@@ -23,7 +23,7 @@ def signup():
 	user_email = r.get('email', None)
 	user_password = r.get('password', None)
 
-	userDO = UserAuth.signup(
+	userDO = UserAuth.create_new_user(
 		email=user_email,
 		password=user_password
 	)
@@ -48,48 +48,42 @@ def login():
 
 	"""
 
-	# TODO
 	r = request.get_json()
-	user_email = r['email']
-	user_password = r['password']
-	res = {
-		'success': True,
-		'result': {
-			'message': 'user has been logged in',
-			'email': user_email,
-			'password': user_password
+	user_email = r.get('email', None)
+	user_password = r.get('password', None)
+
+	userDO = UserAuth.find_user_and_validate_password(
+		email=user_email,
+		password=user_password
+	)
+
+	if userDO is not None:
+		# if the user was created successfully, give them a jwt token
+		token = create_jwt(identity=userDO.to_dict())
+		res = {
+			'success': True,
+			'result': { 'token': token }
 		}
-	}
+	else:
+		res = { 'success': False }
+
 	return jsonify(res)
 
 
-# TODO: DON'T THINK THIS IS NEEDED
-# @user_auth_api.route('/validate-token', methods=['POST'])
-# def validate_token():
-# 	"""
-# 	Validate user's token for authentication.
-
-# 	"""
-
-# 	# TODO
-# 	r = request.get_json()
-# 	user_token = r['token']
-# 	res = {
-# 		'success': True,
-# 		'result': {
-# 			'message': 'user\'s token has been validated',
-# 			'token': user_token
-# 		}
-# 	}
-# 	return jsonify(res)
-
-
-# test jwt
-@user_auth_api.route('/protected', methods=['GET'])
+@user_auth_api.route('/refresh-token', methods=['GET'])
 @jwt_required
-def protected():
-	# Access the identity of the current user with get_jwt_identity
-	return jsonify({'hello_from': get_jwt_identity()}), 200
+def refresh_token():
+	"""
+	Refresh user's token.
 
+	"""
 
+	new_token = create_jwt(identity=get_jwt_identity())
+
+	res = {
+		'success': True,
+		'result': { 'token': new_token }
+	}
+
+	return jsonify(res)
 

@@ -17,3 +17,8 @@ class UserDataObject(BaseDataObject):
 	DEFAULT_CACHE_DRIVER_CLASS = RedisDriver
 	DEFAULT_CACHE_TTL = 3600
 
+
+	# TODO: implement
+	@classmethod
+	def find_by_email(cls, email):
+		pass

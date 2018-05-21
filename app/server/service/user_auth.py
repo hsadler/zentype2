@@ -16,10 +16,11 @@ class UserAuth():
 
 
 	@classmethod
-	def signup(cls, email, password):
+	def create_new_user(cls, email, password):
 
 		# attempt to find existing user by email
 		find_props = { 'email': email }
+		# TODO: optimize with find_by_email() method
 		existing_userDO = UserDataObject.find_one(prop_dict=find_props)
 		if existing_userDO is not None:
 			return None
@@ -32,22 +33,24 @@ class UserAuth():
 		}
 		userDO = UserDataObject.create(prop_dict=create_props)
 		userDO = userDO.save()
+		return userDO
+
+
+	@classmethod
+	def find_user_and_validate_password(cls, email, password):
+
+		# attempt to find user by email
+		find_props = { 'email': email }
+		# TODO: optimize with find_by_email() method
+		userDO = UserDataObject.find_one(prop_dict=find_props)
+
+		# if user exists, compare hashed passwords
 		if userDO is not None:
-			return userDO
-		else:
-			return None
+			hashed_password = cls.__get_hashed_password(password=password)
+			if hashed_password == userDO.get_prop('password_hash'):
+				return userDO
 
-
-	@staticmethod
-	def login():
-		# TODO
-		pass
-
-
-	@staticmethod
-	def validate_token():
-		# TODO
-		pass
+		return None
 
 
 	########## PRIVATE HELPERS ##########
