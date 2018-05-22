@@ -1,13 +1,6 @@
 
 
-// test POST requests with curl:
-
-curl -d '{"email":"qqqq@q.com", "password":"pass"}' \
--H "Content-Type: application/json" \
--X POST http://localhost:4000/api/user-auth/signup
-
-
-// test jwt with curl:
+// TEST AUTH WITH CURL:
 
 // test without token (should fail)
 curl http://localhost:4000/api/user-auth/refresh-token
@@ -26,8 +19,3 @@ curl -d '{"email":"b@q.com", "password":"pass"}' \
 curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjY4ODUzNDAsImlhdCI6MTUyNjg4NTI4MCwibmJmIjoxNTI2ODg1MjgwLCJzdWIiOnsiaWQiOjcsImNyZWF0ZWRfdHMiOjE1MjY4ODQ5NTMsInVwZGF0ZWRfdHMiOjE1MjY4ODQ5NTMsImVtYWlsIjoiYkBxLmNvbSIsInBhc3N3b3JkX2hhc2giOiJlY2ViOTUxOGFkNjdhNTU2Yjc2NDc3NzBmMWJlZDI0NmYyYjNmNGYwMDM3MTAzZTIxNTU2MGMyMzJkY2JlMDY2ZDU1OGY5OTMyMGJhMGQ0MjFhNTJkMjA2MDE5MjQ1NTQxYzZlNzg1MWRjMmZiZDgxMGQ4NGFmYWRiZGI0ZjY5OCJ9fQ.3oboSvgHAWCq1K74_59cdUj7GvZ_HVKNAnWhZ2PgHgg" \
 http://localhost:4000/api/user-auth/refresh-token
 
-
-// mysql stuff:
-
-ALTER TABLE user
-ADD UNIQUE (email);

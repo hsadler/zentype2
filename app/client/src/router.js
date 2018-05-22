@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home'
-import WallMessages from '@/views/WallMessages'
-import EditWallMessage from '@/views/EditWallMessage'
-import NotFound from '@/views/NotFound'
+import HomeView from '@/views/HomeView'
+import SignupView from '@/views/SignupView'
+import LoginView from '@/views/LoginView'
+import NotFoundView from '@/views/NotFoundView'
 
 Vue.use(Router)
 
@@ -12,23 +12,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'HomeView',
+      component: HomeView
     },
     {
-      path: '/wall-messages',
-      name: 'WallMessages',
-      component: WallMessages
+      path: '/signup',
+      name: 'SignupView',
+      component: SignupView
     },
     {
-      path: '/edit-message/:id',
-      name: 'EditWallMessage',
-      component: EditWallMessage
+      path: '/login',
+      name: 'LoginView',
+      component: LoginView
     },
     {
       path: '*',
-      name: 'NotFound',
-      component: NotFound
+      name: 'NotFoundView',
+      component: NotFoundView
     }
   ]
 })
