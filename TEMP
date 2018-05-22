@@ -9,7 +9,7 @@ curl -d '{"email":"qqqq@q.com", "password":"pass"}' \
 
 // test jwt with curl:
 
-// without token
+// test without token (should fail)
 curl http://localhost:4000/api/user-auth/refresh-token
 
 // test token with signup

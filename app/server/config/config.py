@@ -2,6 +2,11 @@
 # app server config
 
 
+# configurations required in config_secrets.py:
+# PASSWORD_SALT
+# JWT_SECRET_KEY
+
+
 # MySQL Database
 MYSQL_HOST = 'mysql'
 MYSQL_USER = 'root'
