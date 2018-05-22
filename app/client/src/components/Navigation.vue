@@ -1,8 +1,8 @@
 <template>
   <div class="navigation-container">
     <router-link to="/">Home</router-link> |
-    <router-link to="/signup">Sign up</router-link> |
-    <router-link to="/login">Log in</router-link>
+    <router-link to="/signup">Sign Up</router-link> |
+    <router-link to="/login">Log In</router-link>
   </div>
 </template>
 

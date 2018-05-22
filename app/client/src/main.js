@@ -7,11 +7,13 @@ import router from '@/router'
 // services
 import services from '@/services'
 import httpService from '@/services/httpService'
+import userService from '@/services/userService'
 
 Vue.config.productionTip = false
 
 services.registerServices({
-  httpService
+  httpService,
+  userService
 })
 
 /* eslint-disable no-new */

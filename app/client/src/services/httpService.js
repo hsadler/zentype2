@@ -3,6 +3,7 @@ import axios from 'axios'
 
 class HttpService {
   get (url) {
+    // TODO: update this to construct query param url from options dictionary
     return axios.get(url).then(res => {
       return res.data
     })
