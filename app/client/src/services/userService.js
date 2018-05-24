@@ -1,12 +1,14 @@
 
-import services from '@/services'
+import BaseService from '@/services/BaseService'
 
-class UserService {
+class UserService extends BaseService {
+  get injectServices () {
+    return ['httpService']
+  }
   createUser (email, password) {
-    var httpService = services.use('httpService')
-    var url = '/api/user-auth/signup'
-    var options = { email, password }
-    return httpService.post(url, options)
+    const url = '/api/user-auth/signup'
+    const options = { email, password }
+    return this.httpService.post(url, options)
   }
 }
 
