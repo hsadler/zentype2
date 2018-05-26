@@ -26,7 +26,7 @@ export default {
   data () {
     return {
       httpService: services.use('httpService'),
-      userService: services.use('userService'),
+      userAuthService: services.use('userAuthService'),
       userEmail: null,
       userPassword: null,
       userConfirmPassword: null,
@@ -39,7 +39,7 @@ export default {
         this.userEmail && this.userPassword &&
         this.userPassword === this.userConfirmPassword
       ) {
-        this.userService.createUser(this.userEmail, this.userPassword)
+        this.userAuthService.createUser(this.userEmail, this.userPassword)
           .then(res => {
             console.log(res)
           })
