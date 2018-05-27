@@ -1,7 +1,6 @@
 
 # User Authentication Service
 
-import sys
 import hashlib
 import config.config_secrets as config_secrets
 

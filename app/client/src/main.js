@@ -20,10 +20,7 @@ services.registerServices({
   userService
 })
 
-// attempt to refresh user token before building app
-const uaService = services.use('userAuthService')
-uaService.refreshUserToken().then(res => {
-  // TODO: also, will need to set user data here...
+var buildVueApp = function () {
   /* eslint-disable no-new */
   new Vue({
     el: '#app',
@@ -31,4 +28,17 @@ uaService.refreshUserToken().then(res => {
     components: { App },
     template: '<App/>'
   })
+}
+
+// attempt to refresh user token and fetch user data before building app
+const uaService = services.use('userAuthService')
+const uService = services.use('userService')
+uaService.refreshUserToken().then(tokenStatus => {
+  if (tokenStatus) {
+    uService.fetchAndSetUserData().then(status => {
+      buildVueApp()
+    })
+  } else {
+    buildVueApp()
+  }
 })

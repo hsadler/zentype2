@@ -10,8 +10,13 @@ class UserService extends BaseService {
     return ['httpService']
   }
   fetchAndSetUserData () {
-    // TODO: implement
     console.log('fetching user data...')
+    // TODO: implement from stub
+    return new Promise(resolve => {
+      resolve(true)
+    })
+
+    // const url = '/'
   }
   clearUserData () {
     this.userData = {}

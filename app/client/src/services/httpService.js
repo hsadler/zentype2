@@ -13,9 +13,9 @@ class HttpService extends BaseService {
       return res.data
     })
   }
-  post (url, options) {
+  post (url, params) {
     const config = this.getRequestConfig()
-    return axios.post(url, options, config).then(res => {
+    return axios.post(url, params, config).then(res => {
       return res.data
     })
   }

@@ -14,7 +14,6 @@ export default {
   data () {
     const userAuthService = services.use('userAuthService')
     return {
-      userAuthService: userAuthService,
       isAuth: userAuthService.isAuth
     }
   }
