@@ -5,6 +5,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_simple import (
 	jwt_required,
+	jwt_optional,
 	create_jwt,
 	get_jwt_identity
 )
@@ -73,19 +74,24 @@ def login():
 
 
 @user_auth_api.route('/refresh-token', methods=['GET'])
-@jwt_required
+@jwt_optional
 def refresh_token():
 	"""
 	Refresh user's token.
 
 	"""
 
-	new_token = create_jwt(identity=get_jwt_identity())
+	identity = get_jwt_identity()
 
-	res = {
-		'success': True,
-		'result': { 'token': new_token }
-	}
-
+	if identity is not None:
+		new_token = create_jwt(identity=get_jwt_identity())
+		res = {
+			'success': True,
+			'result': { 'token': new_token }
+		}
+	else:
+		res = {
+			'success': False
+		}
 	return jsonify(res)
 
