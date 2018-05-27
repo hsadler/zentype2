@@ -37,7 +37,7 @@ export default {
             if (status) {
               this.$router.push({ name: 'HomeView' })
             } else {
-              this.errorMessage = 'Something went wrong..'
+              this.errorMessage = 'Something went wrong...'
             }
           })
       }
@@ -56,6 +56,12 @@ export default {
     }
     button {
       margin-top: 10px;
+    }
+    span {
+      font-size: 14px;
+      display: inline-block;
+      margin-top: 10px;
+      color: red;
     }
   }
 </style>

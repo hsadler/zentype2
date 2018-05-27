@@ -64,10 +64,10 @@ X implement backend
 
 - implement web client
 	X signup view
-	- login view
-	- user service
+	X login view
 	X user auth service
 	X token keeping
+	- user service
 
 
 WPM TYPING TEST TODO:
