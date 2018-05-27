@@ -19,7 +19,7 @@ app = Flask(
 # jwt setup
 app.config['JWT_SECRET_KEY'] = config_secrets.JWT_SECRET_KEY
 # TODO: change the expire duration to something more suitable (1 week?)
-app.config['JWT_EXPIRES'] = timedelta(minutes=1)
+app.config['JWT_EXPIRES'] = timedelta(days=1)
 jwt = JWTManager(app)
 
 

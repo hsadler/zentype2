@@ -7,12 +7,14 @@ import router from '@/router'
 // services
 import services from '@/services'
 import httpService from '@/services/httpService'
+import localStorageService from '@/services/localStorageService'
 import userAuthService from '@/services/userAuthService'
 
 Vue.config.productionTip = false
 
 services.registerServices({
   httpService,
+  localStorageService,
   userAuthService
 })
 

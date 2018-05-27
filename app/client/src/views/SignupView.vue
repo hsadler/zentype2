@@ -14,6 +14,8 @@
     <input type="password" v-model="userConfirmPassword">
     <br>
     <button @click="createUser()">Submit</button>
+    <br>
+    <span>{{ errorMessage }}</span>
   </div>
 </template>
 
@@ -33,15 +35,27 @@ export default {
       errorMessage: null
     }
   },
+  created () {
+    // TESTING: test the auth token
+    const url = '/api/user-auth/refresh-token'
+    this.httpService.get(url).then(res => {
+      console.log(res)
+    })
+  },
   methods: {
     createUser () {
+      this.errorMessage = null
       if (
         this.userEmail && this.userPassword &&
         this.userPassword === this.userConfirmPassword
       ) {
         this.userAuthService.createUser(this.userEmail, this.userPassword)
-          .then(res => {
-            console.log(res)
+          .then(status => {
+            if (status) {
+              // redirect the user to profile here...
+            } else {
+              this.errorMessage = 'Something went wrong..'
+            }
           })
       }
     }

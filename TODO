@@ -63,9 +63,11 @@ X create user mysql table
 X implement backend
 
 - implement web client
-	- signup view
+	X signup view
 	- login view
+	X user auth service
 	- user service
+	X token keeping
 
 
 WPM TYPING TEST TODO:
