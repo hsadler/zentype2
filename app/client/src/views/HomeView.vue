@@ -2,7 +2,7 @@
   <div class="home-container">
     <h1>Home page</h1>
     <p>You're home!</p>
-    <p>Logged in: {{ authStatus }}</p>
+    <p>Logged in: {{ isAuth }}</p>
   </div>
 </template>
 
@@ -12,18 +12,12 @@ import services from '@/services'
 export default {
   name: 'HomePage',
   data () {
+    const userAuthService = services.use('userAuthService')
     return {
-      localStorageService: services.use('localStorageService'),
-      authStatus: false
+      userAuthService: userAuthService,
+      isAuth: userAuthService.isAuth
     }
-  },
-  created () {
-    const authToken = this.localStorageService.get('authToken')
-    if (authToken) {
-      this.authStatus = true
-    }
-  },
-  methods: {}
+  }
 }
 </script>
 
