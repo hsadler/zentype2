@@ -24,10 +24,8 @@ import services from '@/services'
 
 export default {
   name: 'SignupView',
-  props: {},
   data () {
     return {
-      httpService: services.use('httpService'),
       userAuthService: services.use('userAuthService'),
       userEmail: null,
       userPassword: null,
@@ -35,7 +33,6 @@ export default {
       errorMessage: null
     }
   },
-  created () {},
   methods: {
     createUser () {
       this.errorMessage = null
@@ -46,7 +43,7 @@ export default {
         this.userAuthService.createUser(this.userEmail, this.userPassword)
           .then(status => {
             if (status) {
-              // TODO: redirect the user to profile here...
+              this.$router.push({ name: 'HomeView' })
             } else {
               this.errorMessage = 'Something went wrong..'
             }

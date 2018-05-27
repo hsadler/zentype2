@@ -21,6 +21,7 @@ services.registerServices({
 // attempt to refresh user token before building app
 const uaService = services.use('userAuthService')
 uaService.refreshUserToken().then(res => {
+  // TODO: also, will need to unset user data here...
   /* eslint-disable no-new */
   new Vue({
     el: '#app',

@@ -65,8 +65,8 @@ X implement backend
 - implement web client
 	X signup view
 	- login view
-	X user auth service
 	- user service
+	X user auth service
 	X token keeping
 
 

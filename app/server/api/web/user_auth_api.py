@@ -33,7 +33,7 @@ def signup():
 
 	if userDO is not None:
 		# if the user was created successfully, give them a jwt token
-		token = create_jwt(identity=userDO.to_dict())
+		token = get_encode_auth_token(userDO=userDO)
 		res = {
 			'success': True,
 			'result': { 'token': token }
@@ -62,8 +62,7 @@ def login():
 
 	if userDO is not None:
 		# if the user was created successfully, give them a jwt token
-		# TODO: decide what we want to encode into the token (more or less info?)
-		token = create_jwt(identity=userDO.to_dict())
+		token = get_encode_auth_token(userDO=userDO)
 		res = {
 			'success': True,
 			'result': { 'token': token }
@@ -95,4 +94,12 @@ def refresh_token():
 			'success': False
 		}
 	return jsonify(res)
+
+
+########## PRIVATE HELPERS ##########
+
+
+def get_encode_auth_token(userDO):
+	# TODO: decide what we want to encode into the token (more or less data?)
+	return create_jwt(identity=userDO.to_dict())
 
