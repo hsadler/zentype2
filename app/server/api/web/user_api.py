@@ -9,10 +9,12 @@ from flask_jwt_simple import (
 )
 
 from service.user import User
-user_auth_api = Blueprint('user_api', __name__)
 
 
-@user_auth_api.route('/user-data', methods=['GET'])
+user_api = Blueprint('user_api', __name__)
+
+
+@user_api.route('/user-data', methods=['GET'])
 @jwt_required
 def user_data():
 	"""

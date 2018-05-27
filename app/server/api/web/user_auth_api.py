@@ -10,6 +10,8 @@ from flask_jwt_simple import (
 )
 
 from service.user_auth import UserAuth
+
+
 user_auth_api = Blueprint('user_auth_api', __name__)
 
 
