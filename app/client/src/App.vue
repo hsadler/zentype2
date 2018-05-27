@@ -6,10 +6,17 @@
 </template>
 
 <script>
+import services from '@/services'
 import Navigation from '@/components/Navigation'
 
 export default {
   name: 'App',
+  props: {},
+  data () {
+    return {
+      userAuthService: services.use('userAuthService')
+    }
+  },
   components: {
     Navigation
   }

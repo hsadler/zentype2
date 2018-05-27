@@ -62,6 +62,7 @@ def login():
 
 	if userDO is not None:
 		# if the user was created successfully, give them a jwt token
+		# TODO: decide what we want to encode into the token (more or less info?)
 		token = create_jwt(identity=userDO.to_dict())
 		res = {
 			'success': True,

@@ -19,12 +19,9 @@ class HttpService extends BaseService {
       return res.data
     })
   }
-  getAuthToken () {
-    return this.localStorageService.get('authToken')
-  }
   getRequestConfig () {
     const config = {}
-    const token = this.getAuthToken()
+    const token = this.localStorageService.get('authToken')
     if (token) {
       config.headers = {
         'Authorization': 'Bearer ' + token

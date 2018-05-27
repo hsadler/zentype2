@@ -18,10 +18,14 @@ services.registerServices({
   userAuthService
 })
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+// attempt to refresh user token before building app
+const uaService = services.use('userAuthService')
+uaService.refreshUserToken().then(res => {
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
+  })
 })

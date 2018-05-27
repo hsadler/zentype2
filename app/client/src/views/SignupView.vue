@@ -35,13 +35,7 @@ export default {
       errorMessage: null
     }
   },
-  created () {
-    // TESTING: test the auth token
-    const url = '/api/user-auth/refresh-token'
-    this.httpService.get(url).then(res => {
-      console.log(res)
-    })
-  },
+  created () {},
   methods: {
     createUser () {
       this.errorMessage = null
@@ -52,7 +46,7 @@ export default {
         this.userAuthService.createUser(this.userEmail, this.userPassword)
           .then(status => {
             if (status) {
-              // redirect the user to profile here...
+              // TODO: redirect the user to profile here...
             } else {
               this.errorMessage = 'Something went wrong..'
             }

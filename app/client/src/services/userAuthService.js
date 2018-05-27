@@ -18,6 +18,18 @@ class UserAuthService extends BaseService {
     })
   }
   loginUser (email, password) {}
+  logoutUser () {}
+  refreshUserToken () {
+    const url = '/api/user-auth/refresh-token'
+    return this.httpService.get(url).then(res => {
+      if (res.result && res.result.token) {
+        this.localStorageService.set('authToken', res.result.token)
+        return true
+      } else {
+        return false
+      }
+    })
+  }
 }
 
 export default new UserAuthService()
