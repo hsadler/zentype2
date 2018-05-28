@@ -1,5 +1,15 @@
 
 
+TODO NOW:
+- test in prod mode
+- think about wpm typing test
+	- datastores
+	- backend architecture
+	- interfaces
+	- data aggregation
+	- frontend display
+
+
 GENERAL TODO:
 
 - brainstorm app items, tables and schema, architectures
