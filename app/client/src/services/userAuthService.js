@@ -20,7 +20,7 @@ class UserAuthService extends BaseService {
       if (res.result && res.result.token) {
         this.isAuth = true
         this.localStorageService.set('authToken', res.result.token)
-        this.userService.fetchAndSetUserData().then(status => {
+        return this.userService.fetchAndSetUserData().then(status => {
           return true
         })
       } else {
@@ -39,7 +39,7 @@ class UserAuthService extends BaseService {
       if (res.result && res.result.token) {
         this.isAuth = true
         this.localStorageService.set('authToken', res.result.token)
-        this.userService.fetchAndSetUserData().then(status => {
+        return this.userService.fetchAndSetUserData().then(status => {
           return true
         })
       } else {
@@ -70,6 +70,9 @@ class UserAuthService extends BaseService {
         return false
       }
     })
+  }
+  getIsAuth () {
+    return this.isAuth
   }
 }
 

@@ -20,6 +20,9 @@ class UserService extends BaseService {
   clearUserData () {
     this.userData = {}
   }
+  getEmail () {
+    return this.userData.email ? this.userData.email : null
+  }
 }
 
 export default new UserService()

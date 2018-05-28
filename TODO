@@ -8,7 +8,7 @@ GENERAL TODO:
 	- typing_test
 	- achievments
 
-- build user auth
+X build user auth
 	X user table
 	X authentication backend architecture
 		X jwt tokens
@@ -17,7 +17,7 @@ GENERAL TODO:
 			X ex. user should only be able to edit their information and no one
 				elses (achieved with tokens)
 	X authentication web client architecture
-		- limit some pages to authed users
+		X limit some pages to authed users
 
 - build WPM typing test
 	- get_wpm_typing_test() GET endpoint
@@ -62,13 +62,13 @@ X create user mysql table
 
 X implement backend
 
-- implement web client
+X implement web client
 	X signup view
 	X login view
 	X user auth service
 	X token keeping
-	- user service (holds user data)
-	- prevent navigation to certain views if not authed
+	X user service (holds user data)
+	X prevent navigation to certain views if not authed
 
 
 WPM TYPING TEST TODO:
