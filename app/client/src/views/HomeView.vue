@@ -3,6 +3,7 @@
     <h1>Home page</h1>
     <p>You're home!</p>
     <p>Logged in: {{ isAuth }}</p>
+    <p>Email: {{ userEmail }}</p>
   </div>
 </template>
 
@@ -13,8 +14,18 @@ export default {
   name: 'HomePage',
   data () {
     const userAuthService = services.use('userAuthService')
+    const userService = services.use('userService')
     return {
-      isAuth: userAuthService.isAuth
+      userAuthService,
+      userService
+    }
+  },
+  computed: {
+    isAuth () {
+      return this.userAuthService.getIsAuth()
+    },
+    userEmail () {
+      return this.userService.getEmail()
     }
   }
 }
