@@ -10,13 +10,12 @@ class UserService extends BaseService {
     return ['httpService']
   }
   fetchAndSetUserData () {
-    console.log('fetching user data...')
-    // TODO: implement from stub
-    return new Promise(resolve => {
-      resolve(true)
+    const url = '/api/user/get-data'
+    return this.httpService.get(url).then(res => {
+      if (res.result && res.result.user_data) {
+        this.userData = res.result.user_data
+      }
     })
-
-    // const url = '/'
   }
   clearUserData () {
     this.userData = {}

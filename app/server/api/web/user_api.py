@@ -14,34 +14,25 @@ from service.user import User
 user_api = Blueprint('user_api', __name__)
 
 
-@user_api.route('/user-data', methods=['GET'])
+@user_api.route('/get-data', methods=['GET'])
 @jwt_required
-def user_data():
+def get_data():
 	"""
 	Get api formatted user data.
 
-	TODO: implement from this stub
-
 	"""
 
-	# TESTING: display the user identity
-	identity = get_jwt_identity()
-	return jsonify(identity)
+	user_data = get_jwt_identity()
 
-	# userDO = UserAuth.create_new_user(
-	# 	email=user_email,
-	# 	password=user_password
-	# )
+	api_formatted_user_data = {}
+	allowed_keys = ['email']
+	for key in allowed_keys:
+		api_formatted_user_data[key] = user_data[key]
 
-	# if userDO is not None:
-	# 	# if the user was created successfully, give them a jwt token
-	# 	token = get_encode_auth_token(userDO=userDO)
-	# 	res = {
-	# 		'success': True,
-	# 		'result': { 'token': token }
-	# 	}
-	# else:
-	# 	res = { 'success': False }
+	res = {
+		'success': True,
+		'result': { 'user_data': api_formatted_user_data }
+	}
 
-	# return jsonify(res)
+	return jsonify(res)
 
