@@ -1,0 +1,32 @@
+
+
+GENERAL
+- think about wpm typing test
+	- datastores
+	- backend architecture
+	- interfaces
+	- data aggregation
+	- frontend display
+
+
+WORD DATA
+- build word corpus
+	sources:
+		- https://wordnet.princeton.edu/download/current-version
+		- https://github.com/first20hours/google-10000-english
+		- http://www.newgeneralservicelist.org/
+		- https://www.wordfrequency.info/
+		- http://www.insightin.com/esl/
+		- http://www.natcorp.ox.ac.uk/
+		- https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists
+		- https://corpus.byu.edu/coca/
+		- http://norvig.com/mayzner.html
+		- https://www.quora.com/Where-can-I-find-a-list-of-the-10-000-most-important-English-words
+		- http://martinweisser.org/corpora_site/word_lists.html
+
+
+TEST BUILDING
+
+
+TEST RESULTS
+
