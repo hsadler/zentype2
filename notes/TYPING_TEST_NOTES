@@ -77,8 +77,8 @@ WORD DIFFICULTY CALCULATION:
 
 - key fingers:
 	A:LP
-	B:RI
-	C:LI
+	B:LI
+	C:LM
 	D:LM
 	E:LM
 	F:LI
@@ -103,6 +103,13 @@ WORD DIFFICULTY CALCULATION:
 	Y:RI
 	Z:LP
 
+- Keyboard Service:
+	- create keyboard from config
+	- query keyboard for information about:
+		- key character(s)
+		- key position
+		- key difficulty
+		- key hand and finger
 
 TEST BUILDING
 

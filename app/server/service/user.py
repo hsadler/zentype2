@@ -1,8 +1,6 @@
 
 # User Service
 
-import sys
-
 from data_object.user_data_object import UserDataObject
 
 
