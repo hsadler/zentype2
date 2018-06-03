@@ -4,6 +4,8 @@ mysql_store_dev
 redis_store
 redis_store_dev
 
+app/server/sources
+
 config_secrets.py
 
 .DS_Store
