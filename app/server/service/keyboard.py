@@ -27,12 +27,21 @@ class Keyboard():
 
 
 	class Key():
-		def __init__(self, position, finger, difficulty):
+		def __init__(
+			self,
+			position,
+			finger,
+			difficulty=None,
+			primary_char=None,
+			secondary_char=None,
+		):
 			self.position = position
 			self.finger = finger
 			self.difficulty = difficulty
-			self.primary_char = None
-			self.secondary_char = None
+			self.primary_char = primary_char
+			self.secondary_char = secondary_char
+		def set_difficulty(self, difficulty):
+			self.difficulty = difficulty
 		def set_characters(self, primary_char, secondary_char):
 			self.primary_char = primary_char
 			self.secondary_char = secondary_char
@@ -43,69 +52,69 @@ class Keyboard():
 	BASE_KEYBOARD_MODEL = [
 		# 1st row
 		Key([0,0], LEFT_PINKY, None), # ['`','~']
-		LEFT_PINKY, # ['1','!'],
-		LEFT_RING, # ['2','@'],
-		LEFT_MIDDLE, # ['3','#'],
-		LEFT_INDEX, # ['4','$'],
-		LEFT_INDEX, # ['5','%'],
-		RIGHT_INDEX, # ['6','^'],
-		RIGHT_INDEX, # ['7','&'],
-		RIGHT_MIDDLE, # ['8','*'],
-		RIGHT_RING, # ['9','('],
-		RIGHT_PINKY, # ['0',')'],
-		RIGHT_PINKY, # ['-','_'],
-		RIGHT_PINKY, # ['=','+'],
-		RIGHT_PINKY, # ['delete']
+		Key([0,1], LEFT_PINKY, None), # ['1','!']
+		Key([0,2], LEFT_RING, None), # ['2','@']
+		Key([0,3], LEFT_MIDDLE, None), # ['3','#']
+		Key([0,4], LEFT_INDEX, None), # ['4','$']
+		Key([0,5], LEFT_INDEX, None), # ['5','%']
+		Key([0,6], RIGHT_INDEX, None), # ['6','^']
+		Key([0,7], RIGHT_INDEX, None), # ['7','&']
+		Key([0,8], RIGHT_MIDDLE, None), # ['8','*']
+		Key([0,9], RIGHT_RING, None), # ['9','(']
+		Key([0,10], RIGHT_PINKY, None), # ['0',')']
+		Key([0,11], RIGHT_PINKY, None), # ['-','_']
+		Key([0,12], RIGHT_PINKY, None), # ['=','+']
+		Key([0,13], RIGHT_PINKY, None), # ['delete']
 		# 2nd row
-		LEFT_PINKY, # ['tab'],
-		LEFT_PINKY, # ['q','Q'],
-		LEFT_RING, # ['w','W'],
-		LEFT_MIDDLE, # ['e','E'],
-		LEFT_INDEX, # ['r','R'],
-		LEFT_INDEX, # ['t','T'],
-		RIGHT_INDEX, # ['y','Y'],
-		RIGHT_INDEX, # ['u','U'],
-		RIGHT_MIDDLE, # ['i','I'],
-		RIGHT_RING, # ['o','O'],
-		RIGHT_PINKY, # ['p','P'],
-		RIGHT_PINKY, # ['[','{'],
-		RIGHT_PINKY, # [']','}'],
-		RIGHT_PINKY, # ['\\', '|']
+		Key([1,0], LEFT_PINKY, None), # ['tab']
+		Key([1,1], LEFT_PINKY, 2.75), # ['q','Q']
+		Key([1,2], LEFT_RING, 1.5), # ['w','W']
+		Key([1,3], LEFT_MIDDLE, 1.5), # ['e','E']
+		Key([1,4], LEFT_INDEX, 1.5), # ['r','R']
+		Key([1,5], LEFT_INDEX, 2.5), # ['t','T']
+		Key([1,6], RIGHT_INDEX, 2.5), # ['y','Y']
+		Key([1,7], RIGHT_INDEX, 1.5), # ['u','U']
+		Key([1,8], RIGHT_MIDDLE, 1.5), # ['i','I']
+		Key([1,9], RIGHT_RING, 1.5), # ['o','O']
+		Key([1,10], RIGHT_PINKY, 2.75), # ['p','P']
+		Key([1,11], RIGHT_PINKY, None), # ['[','{']
+		Key([1,12], RIGHT_PINKY, None), # [']','}']
+		Key([1,13], RIGHT_PINKY, None), # ['\\', '|']
 		# 3rd row
-		LEFT_PINKY, # ['capslock'],
-		LEFT_PINKY, # ['a','A'],
-		LEFT_RING, # ['s','S'],
-		LEFT_MIDDLE, # ['d','D'],
-		LEFT_INDEX, # ['f','F'],
-		LEFT_INDEX, # ['g','G'],
-		RIGHT_INDEX, # ['h','H'],
-		RIGHT_INDEX, # ['j','J'],
-		RIGHT_MIDDLE, # ['k','K'],
-		RIGHT_RING, # ['l','L'],
-		RIGHT_PINKY, # [';',':'],
-		RIGHT_PINKY, # ['\'','"'],
-		RIGHT_PINKY, # ['return']
+		Key([2,0], LEFT_PINKY, None), # ['capslock']
+		Key([2,1], LEFT_PINKY, 1), # ['a','A']
+		Key([2,2], LEFT_RING, None), # ['s','S']
+		Key([2,3], LEFT_MIDDLE, 1), # ['d','D']
+		Key([2,4], LEFT_INDEX, 1), # ['f','F']
+		Key([2,5], LEFT_INDEX, 1.75), # ['g','G']
+		Key([2,6], RIGHT_INDEX, 1.75), # ['h','H']
+		Key([2,7], RIGHT_INDEX, 1), # ['j','J']
+		Key([2,8], RIGHT_MIDDLE, 1), # ['k','K']
+		Key([2,9], RIGHT_RING, 1), # ['l','L']
+		Key([2,10], RIGHT_PINKY, None), # [';',':']
+		Key([2,11], RIGHT_PINKY, None), # ['\'','"']
+		Key([2,12], RIGHT_PINKY, None), # ['return']
 		# 4th row
-		LEFT_PINKY, # ['left shift'],
-		LEFT_PINKY, # ['z','Z'],
-		LEFT_RING, # ['x','X'],
-		LEFT_MIDDLE, # ['c','C'],
-		LEFT_INDEX, # ['v','V'],
-		LEFT_INDEX, # ['b','B'],
-		RIGHT_INDEX, # ['n','N'],
-		RIGHT_INDEX, # ['m','M'],
-		RIGHT_MIDDLE, # [',','<'],
-		RIGHT_RING, # ['.','>'],
-		RIGHT_PINKY, # ['/','?'],
-		RIGHT_PINKY, # ['right shift']
+		Key([3,0], LEFT_PINKY, None), # ['left shift']
+		Key([3,1], LEFT_PINKY, 2.75), # ['z','Z']
+		Key([3,2], LEFT_RING, 2.75), # ['x','X']
+		Key([3,3], LEFT_MIDDLE, 2), # ['c','C']
+		Key([3,4], LEFT_INDEX, 2), # ['v','V']
+		Key([3,5], LEFT_INDEX, 3), # ['b','B']
+		Key([3,6], RIGHT_INDEX, 2), # ['n','N']
+		Key([3,7], RIGHT_INDEX, 2), # ['m','M']
+		Key([3,8], RIGHT_MIDDLE, None), # [',','<']
+		Key([3,9], RIGHT_RING, None), # ['.','>']
+		Key([3,10], RIGHT_PINKY, None), # ['/','?']
+		Key([3,11], RIGHT_PINKY, None), # ['right shift']
 		# 5th row
-		LEFT_PINKY, # ['left fn'],
-		LEFT_PINKY, # ['left control'],
-		LEFT_THUMB, # ['left option'],
-		LEFT_THUMB, # ['left command'],
-		THUMB, # ['spacebar'],
-		RIGHT_THUMB, # ['right command'],
-		RIGHT_PINKY # ['right option']
+		Key([4,0], LEFT_PINKY, None), # ['left fn']
+		Key([4,1], LEFT_PINKY, None), # ['left control']
+		Key([4,2], LEFT_THUMB, None), # ['left option']
+		Key([4,3], LEFT_THUMB, None), # ['left command']
+		Key([4,4], THUMB, None), # ['spacebar']
+		Key([4,5], RIGHT_THUMB, None), # ['right command']
+		Key([4,6], RIGHT_PINKY, None) # ['right option']
 	]
 
 
@@ -182,15 +191,17 @@ class Keyboard():
 	def __init__(self, keyboard_config):
 		self.keyboard_config = keyboard_config
 		self.keyboard_model = self.BASE_KEYBOARD_MODEL
-		# for key, keyboard_key in self.model.items():
-		# 	key_chars = keyboard_config[key]
-		# 	primary_char = key_chars[0]
-		# 	if len(key_chars) == 2:
-		# 		secondary_char = key_chars[1]
-		# 	else:
-		# 		secondary_char = None
-		# 	keyboard_key.set_characters(primary_char, secondary_char):
+		for key, keyboard_key in enumerate(self.keyboard_model):
+			key_chars = keyboard_config[key]
+			primary_char = key_chars[0]
+			if len(key_chars) == 2:
+				secondary_char = key_chars[1]
+			else:
+				secondary_char = None
+			keyboard_key.set_characters(primary_char, secondary_char)
 
+	def get_difficulty_for_character(char):
+		pass
 
 
 
