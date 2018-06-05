@@ -1,6 +1,8 @@
 
 # Word Service
 
+from service.keyboard import Keyboard
+
 
 class Word():
 	"""
@@ -8,7 +10,11 @@ class Word():
 
 	"""
 
-	def calculate_difficulty(self, word):
+
+	def __init__(self, text):
+		self.text = text
+
+	def get_difficulty(self):
 		pass
 
 

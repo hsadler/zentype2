@@ -1,10 +1,13 @@
 
 # Keyboard Service
 
+from service.language import Language
+
 
 class Keyboard():
 	"""
-	Keyboard Service. Provides a keyboard model based on configuration options.
+	Keyboard Service. Provides a keyboard model and methods based on key layout
+	and language configurations.
 
 	"""
 
@@ -40,11 +43,28 @@ class Keyboard():
 			self.difficulty = difficulty
 			self.primary_char = primary_char
 			self.secondary_char = secondary_char
+		def get_finger(self):
+			return self.finger
 		def set_difficulty(self, difficulty):
 			self.difficulty = difficulty
+		def get_difficulty(self):
+			return self.difficulty
 		def set_characters(self, primary_char, secondary_char):
 			self.primary_char = primary_char
 			self.secondary_char = secondary_char
+		def get_characters(self):
+			return {
+				'primary': self.primary_char,
+				'secondary': self.secondary_char
+			}
+		def to_dict(self):
+			return {
+				'position': self.position,
+				'finger': self.finger,
+				'difficulty': self.difficulty,
+				'primary_char': self.primary_char,
+				'secondary_char': self.secondary_char
+			}
 
 
 	# base keyboard model
@@ -83,7 +103,7 @@ class Keyboard():
 		# 3rd row
 		Key([2,0], LEFT_PINKY, None), # ['capslock']
 		Key([2,1], LEFT_PINKY, 1), # ['a','A']
-		Key([2,2], LEFT_RING, None), # ['s','S']
+		Key([2,2], LEFT_RING, 1), # ['s','S']
 		Key([2,3], LEFT_MIDDLE, 1), # ['d','D']
 		Key([2,4], LEFT_INDEX, 1), # ['f','F']
 		Key([2,5], LEFT_INDEX, 1.75), # ['g','G']
@@ -118,9 +138,9 @@ class Keyboard():
 	]
 
 
-	# keyboard configurations
+	# keyboard layouts
 
-	QWERTY_CONFIG = [
+	QWERTY = [
 		# 1st row
 		['`','~'],
 		['1','!'],
@@ -188,20 +208,38 @@ class Keyboard():
 		['right option']
 	]
 
-	def __init__(self, keyboard_config):
-		self.keyboard_config = keyboard_config
+	def __init__(self, keyboard_layout, language):
+		self.keyboard_layout = keyboard_layout
+		self.language = Language(language)
 		self.keyboard_model = self.BASE_KEYBOARD_MODEL
-		for key, keyboard_key in enumerate(self.keyboard_model):
-			key_chars = keyboard_config[key]
+		# configure keyboard keys base on configurations
+		for i, keyboard_key in enumerate(self.keyboard_model):
+			# set key characters based on keyboard layout
+			key_chars = keyboard_layout[i]
 			primary_char = key_chars[0]
 			if len(key_chars) == 2:
 				secondary_char = key_chars[1]
 			else:
 				secondary_char = None
 			keyboard_key.set_characters(primary_char, secondary_char)
+			# adjust key difficulty score based on language
+			key_char_frequency = self.language.get_letter_frequency(
+				letter=primary_char.upper()
+			)
+			if key_char_frequency is not None:
+				init_score = keyboard_key.get_difficulty()
+				to_deduct = init_score * (key_char_frequency / 100)
+				adjusted_score = init_score - to_deduct
+				keyboard_key.set_difficulty(adjusted_score)
 
-	def get_difficulty_for_character(char):
-		pass
+	def get_key_from_character(self, char):
+		for key in self.keyboard_model:
+			chars = list(key.get_characters().values())
+			if char in chars:
+				return key
+		return None
+
+
 
 
 

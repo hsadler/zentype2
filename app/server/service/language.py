@@ -43,8 +43,11 @@ class Language():
 	}
 
 	def __init__(self, language):
-		self.language = language
+		self.letter_frequencies = language['letter_frequencies']
 
 	def get_letter_frequency(self, letter):
-		return self.language['letter_frequencies'][letter]
+		if letter in self.letter_frequencies:
+			return self.letter_frequencies[letter]
+		else:
+			return None
 
