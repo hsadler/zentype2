@@ -9,6 +9,10 @@ class Keyboard():
 	Keyboard Service. Provides a keyboard model and methods based on key layout
 	and language configurations.
 
+	TODO:
+		- increase difficulty score for secondary characters on key
+		- decrease difficulty for repeated keys
+
 	"""
 
 
@@ -27,6 +31,24 @@ class Keyboard():
 	RIGHT_MIDDLE = 'RM'
 	RIGHT_RING = 'RR'
 	RIGHT_PINKY = 'RP'
+
+
+	# hands
+	LEFT_HAND = [
+		LEFT_PINKY,
+		LEFT_RING,
+		LEFT_MIDDLE,
+		LEFT_INDEX,
+		LEFT_THUMB
+	]
+
+	RIGHT_HAND = [
+		RIGHT_THUMB,
+		RIGHT_INDEX,
+		RIGHT_MIDDLE,
+		RIGHT_RING,
+		RIGHT_PINKY
+	]
 
 
 	class Key():
@@ -208,9 +230,9 @@ class Keyboard():
 		['right option']
 	]
 
-	def __init__(self, keyboard_layout, language):
+	def __init__(self, keyboard_layout, language=None):
 		self.keyboard_layout = keyboard_layout
-		self.language = Language(language)
+		self.language = Language(language) if language is not None else None
 		self.keyboard_model = self.BASE_KEYBOARD_MODEL
 		# configure keyboard keys base on configurations
 		for i, keyboard_key in enumerate(self.keyboard_model):
@@ -222,15 +244,16 @@ class Keyboard():
 			else:
 				secondary_char = None
 			keyboard_key.set_characters(primary_char, secondary_char)
-			# adjust key difficulty score based on language
-			key_char_frequency = self.language.get_letter_frequency(
-				letter=primary_char.upper()
-			)
-			if key_char_frequency is not None:
-				init_score = keyboard_key.get_difficulty()
-				to_deduct = init_score * (key_char_frequency / 100)
-				adjusted_score = init_score - to_deduct
-				keyboard_key.set_difficulty(adjusted_score)
+			# if language is set, adjust key difficulty score based on language
+			if self.language is not None:
+				key_char_frequency = self.language.get_letter_frequency(
+					letter=primary_char.upper()
+				)
+				if key_char_frequency is not None:
+					init_score = keyboard_key.get_difficulty()
+					to_deduct = init_score * (key_char_frequency / 100)
+					adjusted_score = init_score - to_deduct
+					keyboard_key.set_difficulty(adjusted_score)
 
 	def get_key_from_character(self, char):
 		for key in self.keyboard_model:
@@ -238,6 +261,40 @@ class Keyboard():
 			if char in chars:
 				return key
 		return None
+
+	@classmethod
+	def calculate_key_transition_difficulty(cls, key_1, key_2):
+		avg_difficulty = (key_1.get_difficulty() + key_2.get_difficulty()) / 2
+		base_trans_difficulty = avg_difficulty / 4
+		key_1_fing = key_1.get_finger()
+		key_2_fing = key_2.get_finger()
+		# is same finger on same hand
+		if key_1_fing == key_2_fing:
+			return base_trans_difficulty
+		key_1_hand = 'left' if key_1_fing in cls.LEFT_HAND else 'right'
+		key_2_hand = 'left' if key_2_fing in cls.LEFT_HAND else 'right'
+		# is same hand
+		if key_1_hand == key_2_hand:
+			return base_trans_difficulty - (base_trans_difficulty / 3)
+		# otherwise, is different hand
+		return base_trans_difficulty - (base_trans_difficulty * 2 / 3)
+
+	def get_keyboard_difficulty_for_word(self, word):
+		keys = []
+		for char in word:
+			keys.append(self.get_key_from_character(char))
+		difficulty_vals = []
+		keys_len = len(keys)
+		for index, key in enumerate(keys):
+			difficulty_vals.append(key.get_difficulty())
+			if index < keys_len - 1:
+				trans_difficulty = self.calculate_key_transition_difficulty(
+					key_1=key,
+					key_2=keys[index + 1]
+				)
+				difficulty_vals.append(trans_difficulty)
+		return sum(difficulty_vals)
+
 
 
 
