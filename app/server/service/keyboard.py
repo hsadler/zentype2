@@ -10,8 +10,8 @@ class Keyboard():
 	and language configurations.
 
 	TODO:
-		- increase difficulty score for secondary characters on key
-		- decrease difficulty for repeated keys
+		X make all difficulty scores higher (* 100)
+		- round all score outputs to an integer
 
 	"""
 
@@ -69,8 +69,12 @@ class Keyboard():
 			return self.finger
 		def set_difficulty(self, difficulty):
 			self.difficulty = difficulty
-		def get_difficulty(self):
-			return self.difficulty
+		def get_difficulty(self, char=None):
+			base_d = self.difficulty
+			if char is not None and char == self.get_secondary_char():
+				return base_d + (base_d / 4)
+			else:
+				return base_d
 		def set_characters(self, primary_char, secondary_char):
 			self.primary_char = primary_char
 			self.secondary_char = secondary_char
@@ -79,6 +83,10 @@ class Keyboard():
 				'primary': self.primary_char,
 				'secondary': self.secondary_char
 			}
+		def get_primary_char(self):
+			return self.primary_char
+		def get_secondary_char(self):
+			return self.secondary_char
 		def to_dict(self):
 			return {
 				'position': self.position,
@@ -109,42 +117,42 @@ class Keyboard():
 		Key([0,13], RIGHT_PINKY, None), # ['delete']
 		# 2nd row
 		Key([1,0], LEFT_PINKY, None), # ['tab']
-		Key([1,1], LEFT_PINKY, 2.75), # ['q','Q']
-		Key([1,2], LEFT_RING, 1.5), # ['w','W']
-		Key([1,3], LEFT_MIDDLE, 1.5), # ['e','E']
-		Key([1,4], LEFT_INDEX, 1.5), # ['r','R']
-		Key([1,5], LEFT_INDEX, 2.5), # ['t','T']
-		Key([1,6], RIGHT_INDEX, 2.5), # ['y','Y']
-		Key([1,7], RIGHT_INDEX, 1.5), # ['u','U']
-		Key([1,8], RIGHT_MIDDLE, 1.5), # ['i','I']
-		Key([1,9], RIGHT_RING, 1.5), # ['o','O']
-		Key([1,10], RIGHT_PINKY, 2.75), # ['p','P']
+		Key([1,1], LEFT_PINKY, 275), # ['q','Q']
+		Key([1,2], LEFT_RING, 150), # ['w','W']
+		Key([1,3], LEFT_MIDDLE, 150), # ['e','E']
+		Key([1,4], LEFT_INDEX, 150), # ['r','R']
+		Key([1,5], LEFT_INDEX, 250), # ['t','T']
+		Key([1,6], RIGHT_INDEX, 250), # ['y','Y']
+		Key([1,7], RIGHT_INDEX, 150), # ['u','U']
+		Key([1,8], RIGHT_MIDDLE, 150), # ['i','I']
+		Key([1,9], RIGHT_RING, 150), # ['o','O']
+		Key([1,10], RIGHT_PINKY, 275), # ['p','P']
 		Key([1,11], RIGHT_PINKY, None), # ['[','{']
 		Key([1,12], RIGHT_PINKY, None), # [']','}']
 		Key([1,13], RIGHT_PINKY, None), # ['\\', '|']
 		# 3rd row
 		Key([2,0], LEFT_PINKY, None), # ['capslock']
-		Key([2,1], LEFT_PINKY, 1), # ['a','A']
-		Key([2,2], LEFT_RING, 1), # ['s','S']
-		Key([2,3], LEFT_MIDDLE, 1), # ['d','D']
-		Key([2,4], LEFT_INDEX, 1), # ['f','F']
-		Key([2,5], LEFT_INDEX, 1.75), # ['g','G']
-		Key([2,6], RIGHT_INDEX, 1.75), # ['h','H']
-		Key([2,7], RIGHT_INDEX, 1), # ['j','J']
-		Key([2,8], RIGHT_MIDDLE, 1), # ['k','K']
-		Key([2,9], RIGHT_RING, 1), # ['l','L']
+		Key([2,1], LEFT_PINKY, 100), # ['a','A']
+		Key([2,2], LEFT_RING, 100), # ['s','S']
+		Key([2,3], LEFT_MIDDLE, 100), # ['d','D']
+		Key([2,4], LEFT_INDEX, 100), # ['f','F']
+		Key([2,5], LEFT_INDEX, 175), # ['g','G']
+		Key([2,6], RIGHT_INDEX, 175), # ['h','H']
+		Key([2,7], RIGHT_INDEX, 100), # ['j','J']
+		Key([2,8], RIGHT_MIDDLE, 100), # ['k','K']
+		Key([2,9], RIGHT_RING, 100), # ['l','L']
 		Key([2,10], RIGHT_PINKY, None), # [';',':']
 		Key([2,11], RIGHT_PINKY, None), # ['\'','"']
 		Key([2,12], RIGHT_PINKY, None), # ['return']
 		# 4th row
 		Key([3,0], LEFT_PINKY, None), # ['left shift']
-		Key([3,1], LEFT_PINKY, 2.75), # ['z','Z']
-		Key([3,2], LEFT_RING, 2.75), # ['x','X']
-		Key([3,3], LEFT_MIDDLE, 2), # ['c','C']
-		Key([3,4], LEFT_INDEX, 2), # ['v','V']
-		Key([3,5], LEFT_INDEX, 3), # ['b','B']
-		Key([3,6], RIGHT_INDEX, 2), # ['n','N']
-		Key([3,7], RIGHT_INDEX, 2), # ['m','M']
+		Key([3,1], LEFT_PINKY, 275), # ['z','Z']
+		Key([3,2], LEFT_RING, 275), # ['x','X']
+		Key([3,3], LEFT_MIDDLE, 200), # ['c','C']
+		Key([3,4], LEFT_INDEX, 200), # ['v','V']
+		Key([3,5], LEFT_INDEX, 300), # ['b','B']
+		Key([3,6], RIGHT_INDEX, 200), # ['n','N']
+		Key([3,7], RIGHT_INDEX, 200), # ['m','M']
 		Key([3,8], RIGHT_MIDDLE, None), # [',','<']
 		Key([3,9], RIGHT_RING, None), # ['.','>']
 		Key([3,10], RIGHT_PINKY, None), # ['/','?']
@@ -230,6 +238,7 @@ class Keyboard():
 		['right option']
 	]
 
+
 	def __init__(self, keyboard_layout, language=None):
 		self.keyboard_layout = keyboard_layout
 		self.language = Language(language) if language is not None else None
@@ -263,34 +272,48 @@ class Keyboard():
 		return None
 
 	@classmethod
-	def calculate_key_transition_difficulty(cls, key_1, key_2):
-		avg_difficulty = (key_1.get_difficulty() + key_2.get_difficulty()) / 2
+	def calculate_key_transition_difficulty(cls, char_1, key_1, char_2, key_2):
+		key_1_diff = key_1.get_difficulty(char=char_1)
+		key_2_diff = key_2.get_difficulty(char=char_2)
+		avg_difficulty = (key_1_diff + key_2_diff) / 2
 		base_trans_difficulty = avg_difficulty / 4
 		key_1_fing = key_1.get_finger()
 		key_2_fing = key_2.get_finger()
-		# is same finger on same hand
+		# same key 2 times in a row
+		if key_1 == key_2:
+			return base_trans_difficulty - (base_trans_difficulty / 3)
+		# same finger on same hand
 		if key_1_fing == key_2_fing:
 			return base_trans_difficulty
 		key_1_hand = 'left' if key_1_fing in cls.LEFT_HAND else 'right'
 		key_2_hand = 'left' if key_2_fing in cls.LEFT_HAND else 'right'
-		# is same hand
+		# same hand
 		if key_1_hand == key_2_hand:
 			return base_trans_difficulty - (base_trans_difficulty / 3)
 		# otherwise, is different hand
 		return base_trans_difficulty - (base_trans_difficulty * 2 / 3)
 
 	def get_keyboard_difficulty_for_word(self, word):
-		keys = []
+		keys_data = []
 		for char in word:
-			keys.append(self.get_key_from_character(char))
+			k = {
+				'char': char,
+				'key': self.get_key_from_character(char)
+			}
+			keys_data.append(k)
 		difficulty_vals = []
-		keys_len = len(keys)
-		for index, key in enumerate(keys):
-			difficulty_vals.append(key.get_difficulty())
-			if index < keys_len - 1:
+		keys_data_len = len(keys_data)
+		for index, key_data in enumerate(keys_data):
+			# add key difficulty based on char
+			k_difficulty = key_data['key'].get_difficulty(char=key_data['char'])
+			difficulty_vals.append(k_difficulty)
+			# add key transition difficulties
+			if index < keys_data_len - 1:
 				trans_difficulty = self.calculate_key_transition_difficulty(
-					key_1=key,
-					key_2=keys[index + 1]
+					char_1=key_data['char'],
+					key_1=key_data['key'],
+					char_2=keys_data[index + 1]['char'],
+					key_2=keys_data[index + 1]['key']
 				)
 				difficulty_vals.append(trans_difficulty)
 		return sum(difficulty_vals)
