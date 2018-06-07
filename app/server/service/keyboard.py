@@ -69,12 +69,17 @@ class Keyboard():
 			return self.finger
 		def set_difficulty(self, difficulty):
 			self.difficulty = difficulty
-		def get_difficulty(self, char=None):
+		def get_difficulty(self, char=None, round_to_int=False):
 			base_d = self.difficulty
+			res = None
 			if char is not None and char == self.get_secondary_char():
-				return base_d + (base_d / 4)
+				res = base_d + (base_d / 4)
 			else:
-				return base_d
+				res = base_d
+			if round_to_int:
+				return int(res)
+			else:
+				return res
 		def set_characters(self, primary_char, secondary_char):
 			self.primary_char = primary_char
 			self.secondary_char = secondary_char
@@ -272,28 +277,41 @@ class Keyboard():
 		return None
 
 	@classmethod
-	def calculate_key_transition_difficulty(cls, char_1, key_1, char_2, key_2):
+	def calculate_key_transition_difficulty(
+		cls,
+		char_1,
+		key_1,
+		char_2,
+		key_2,
+		round_to_int=False
+	):
 		key_1_diff = key_1.get_difficulty(char=char_1)
 		key_2_diff = key_2.get_difficulty(char=char_2)
 		avg_difficulty = (key_1_diff + key_2_diff) / 2
 		base_trans_difficulty = avg_difficulty / 4
 		key_1_fing = key_1.get_finger()
 		key_2_fing = key_2.get_finger()
-		# same key 2 times in a row
-		if key_1 == key_2:
-			return base_trans_difficulty - (base_trans_difficulty / 3)
-		# same finger on same hand
-		if key_1_fing == key_2_fing:
-			return base_trans_difficulty
 		key_1_hand = 'left' if key_1_fing in cls.LEFT_HAND else 'right'
 		key_2_hand = 'left' if key_2_fing in cls.LEFT_HAND else 'right'
+		res = None
+		# same key 2 times in a row
+		if key_1 == key_2:
+			res = base_trans_difficulty - (base_trans_difficulty / 3)
+		# same finger on same hand
+		elif key_1_fing == key_2_fing:
+			res = base_trans_difficulty
 		# same hand
-		if key_1_hand == key_2_hand:
-			return base_trans_difficulty - (base_trans_difficulty / 3)
+		elif key_1_hand == key_2_hand:
+			res = base_trans_difficulty - (base_trans_difficulty / 3)
 		# otherwise, is different hand
-		return base_trans_difficulty - (base_trans_difficulty * 2 / 3)
+		else:
+			res = base_trans_difficulty - (base_trans_difficulty * 2 / 3)
+		if round_to_int:
+			return int(res)
+		else:
+			return res
 
-	def get_keyboard_difficulty_for_word(self, word):
+	def get_keyboard_difficulty_for_word(self, word, round_to_int=False):
 		keys_data = []
 		for char in word:
 			k = {
@@ -316,7 +334,11 @@ class Keyboard():
 					key_2=keys_data[index + 1]['key']
 				)
 				difficulty_vals.append(trans_difficulty)
-		return sum(difficulty_vals)
+		# return [int(x) for x in difficulty_vals]
+		if round_to_int:
+			return int(sum(difficulty_vals))
+		else:
+			return sum(difficulty_vals)
 
 
 

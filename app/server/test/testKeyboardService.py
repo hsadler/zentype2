@@ -33,7 +33,10 @@ sentence = ''.join(cleaned_sentence)
 words = sentence.split()
 word_difficulties = []
 for word in words:
-	word_difficulty = keyboard.get_keyboard_difficulty_for_word(word=word)
+	word_difficulty = keyboard.get_keyboard_difficulty_for_word(
+		word=word,
+		round_to_int=True
+	)
 	word_difficulties.append({
 		'word': word,
 		'difficulty': word_difficulty
