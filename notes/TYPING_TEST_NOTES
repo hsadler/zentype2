@@ -43,11 +43,11 @@ WORD DATA
 
 WORD DIFFICULTY CALCULATION:
 
-- difficulty score by key:
-	- range 1-3 maybe convert to 0-1 or 0-100
-	- easiest = home row, hardest 'B'
+X difficulty score by key:
+	X range 1-3 maybe convert to 0-1 or 0-100
+	X easiest = home row, hardest 'B'
 
-- key difficulty scores:
+X key difficulty scores:
 	X1. home row (ASDFJKL;): 1
 	X2. top easy (WERUIO): 1.5
 	X3. index in (GH): 1.75
@@ -56,11 +56,11 @@ WORD DIFFICULTY CALCULATION:
 	X6. outers (QPZX): 2.75
 	X7. hardest (B): 3
 
-- key combination score:
-	- hand switch easier than same hand
-	- finger switch easier than same finger
+X key combination score:
+	X hand switch easier than same hand
+	X finger switch easier than same finger
 
-- key fingers:
+X key fingers:
 	A:LP
 	B:LI
 	C:LM
@@ -88,7 +88,7 @@ WORD DIFFICULTY CALCULATION:
 	Y:RI
 	Z:LP
 
-- Keyboard Service:
+X Keyboard Service:
 	- create keyboard from config
 	- query keyboard for information about:
 		- key character(s)

@@ -105,12 +105,3 @@ sorted_word_difficulties = sorted(
 )
 ppp(sorted_word_difficulties)
 
-
-
-
-
-
-
-
-
-
