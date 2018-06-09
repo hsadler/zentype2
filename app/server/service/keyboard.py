@@ -73,7 +73,7 @@ class Keyboard():
 			base_d = self.difficulty
 			res = None
 			if char is not None and char == self.get_secondary_char():
-				res = base_d + (base_d / 4)
+				res = base_d + (base_d * 2/3)
 			else:
 				res = base_d
 			if round_to_int:
@@ -305,7 +305,7 @@ class Keyboard():
 			res = base_trans_difficulty - (base_trans_difficulty / 3)
 		# otherwise, is different hand
 		else:
-			res = base_trans_difficulty - (base_trans_difficulty * 2 / 3)
+			res = base_trans_difficulty - (base_trans_difficulty * 2/3)
 		if round_to_int:
 			return int(res)
 		else:
@@ -334,15 +334,8 @@ class Keyboard():
 					key_2=keys_data[index + 1]['key']
 				)
 				difficulty_vals.append(trans_difficulty)
-		# return [int(x) for x in difficulty_vals]
 		if round_to_int:
 			return int(sum(difficulty_vals))
 		else:
 			return sum(difficulty_vals)
-
-
-
-
-
-
 
