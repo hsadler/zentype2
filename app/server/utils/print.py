@@ -1,7 +1,7 @@
 
 # Console print helper
 
-import json
+import simplejson as json
 import pprint
 
 

@@ -2,7 +2,7 @@
 # Base Data Object
 
 import sys
-import json
+import simplejson as json
 import config.config as config
 
 from abc import ABCMeta, abstractmethod
