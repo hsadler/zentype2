@@ -9,9 +9,6 @@ class Keyboard():
 	Keyboard Service. Provides a keyboard model and methods based on key layout
 	and language configurations.
 
-	TODO:
-		X make all difficulty scores higher (* 100)
-		- round all score outputs to an integer
 
 	"""
 
