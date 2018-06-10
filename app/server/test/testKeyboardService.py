@@ -82,14 +82,11 @@ sentence = """
 	lupus), and Canis familiaris under the Evolutionary Species Concept because
 	the dog has commenced down a separate evolutionary pathway to the gray wolf.
 """
-cleaned_sentence = []
-for ch in sentence:
-	if ch.isalpha() or ch == ' ':
-		cleaned_sentence.append(ch)
-sentence = ''.join(cleaned_sentence)
+
 words = sentence.split()
 word_difficulties = []
 for word in words:
+	ppp(word)
 	word_difficulty = keyboard.get_keyboard_difficulty_for_word(
 		word=word,
 		round_to_int=True

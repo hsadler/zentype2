@@ -25,7 +25,7 @@ mysql_driver = MySqlDriver(
 
 # create english_word table
 create_table_query = """
-	CREATE TABLE IF NOT EXISTS english_word (
+	CREATE TABLE IF NOT EXISTS english_word_2 (
 		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		created_ts INT(11) NOT NULL,
 		updated_ts INT(11) NOT NULL,
@@ -33,8 +33,10 @@ create_table_query = """
 		text VARCHAR(100) NOT NULL UNIQUE,
 		length INT(3),
 		part_of_speech VARCHAR(50),
-		frequency DECIMAL(8, 6),
-		qwerty_difficulty INT(11)
+		frequency INT(11),
+		frequency_rank INT(11),
+		qwerty_difficulty INT(11),
+		qwerty_difficulty_rank INT(11)
 	)
 """
 query_result = mysql_driver.query(query_string=create_table_query)

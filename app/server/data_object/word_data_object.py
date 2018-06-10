@@ -12,6 +12,7 @@ class WordDataObject(BaseDataObject):
 	"""
 
 	ENGLISH = 'english_word'
+	ENGLISH_2 = 'english_word_2'
 
 	TABLE_NAME = 'english_word'
 	DEFAULT_DB_DRIVER_CLASS = MySqlDriver
