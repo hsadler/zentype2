@@ -10,12 +10,13 @@ from utils.print import ppp
 keyboard = Keyboard(Keyboard.QWERTY, Language.ENGLISH)
 
 with open('../../sources/word_sources/number27.org/words_90K.txt', 'r') as file:
-	for line in file:
-		parts = [x.strip('() ') for x in line.split(',')][:2]
+	for line_index, line in enumerate(file):
+		parts = [x.strip('() ') for x in line.split(',')]
 		word_props = {
 			'text': parts[0],
 			'length': len(parts[0]),
 			'frequency': float(parts[1]),
+			'frequency_rank': line_index + 1,
 			'qwerty_difficulty': keyboard.get_keyboard_difficulty_for_word(
 				parts[0],
 				round_to_int=True
@@ -23,9 +24,9 @@ with open('../../sources/word_sources/number27.org/words_90K.txt', 'r') as file:
 		}
 		wordDO = WordDataObject.create(
 			prop_dict=word_props,
-			language=WordDataObject.ENGLISH
+			language=WordDataObject.ENGLISH_1
 		)
 		res = wordDO.save()
-		ppp(res)
+		ppp(res.to_dict())
 
 
