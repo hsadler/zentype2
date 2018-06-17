@@ -74,8 +74,8 @@ X implement web client
 WPM TYPING TEST TODO:
 
 - gather word library
-	- download/scrape from sources
-	- possible rating systems: difficulty, popularity, length
+	X download/scrape from sources
+	X possible rating systems: difficulty, popularity, length
 	- searchable by letter contents (reverse indexing with ElasticSearch?)
 	- consider punctuation
 

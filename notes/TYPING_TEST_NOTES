@@ -11,12 +11,12 @@ GENERAL
 
 WORD DATA
 
-- build word corpus
+X build word corpus
 	sources:
 		- https://wordnet.princeton.edu/download/current-version
 		- https://github.com/first20hours/google-10000-english
 		- http://www.newgeneralservicelist.org/
-		- https://www.wordfrequency.info/
+		X https://www.wordfrequency.info/
 		- http://www.insightin.com/esl/
 		- http://www.natcorp.ox.ac.uk/
 		- https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists
