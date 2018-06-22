@@ -76,7 +76,7 @@ WPM TYPING TEST TODO:
 - gather word library
 	X download/scrape from sources
 	X possible rating systems: difficulty, popularity, length
-	- searchable by letter contents (reverse indexing with ElasticSearch?)
+	X searchable by letter contents
 	- consider punctuation
 
 - test builder

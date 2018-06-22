@@ -26,12 +26,12 @@ X build word corpus
 			important-English-words
 		- http://martinweisser.org/corpora_site/word_lists.html
 
-- word attributes
-	- characters
-	- part of speech
-	- length
-	- frequency (usage rank)
-	- keyboard difficulty
+X word attributes
+	X characters
+	X part of speech
+	X length
+	X frequency (usage rank)
+	X keyboard difficulty
 
 - queries for word search:
 	- contains substring
