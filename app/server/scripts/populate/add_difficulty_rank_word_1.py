@@ -18,7 +18,7 @@ for word_data in word_datas:
 	word_data['qwerty_difficulty_rank'] = curr_difficulty_rank
 	word_DO = WordDataObject.create(
 		prop_dict=word_data,
-		language=WordDataObject.ENGLISH_1
+		language=WordDataObject.ENGLISH
 	)
 	save_res = word_DO.save()
 	ppp(save_res)

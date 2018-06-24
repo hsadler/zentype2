@@ -24,7 +24,7 @@ with open('../../sources/word_sources/number27.org/words_90K.txt', 'r') as file:
 		}
 		wordDO = WordDataObject.create(
 			prop_dict=word_props,
-			language=WordDataObject.ENGLISH_1
+			language=WordDataObject.ENGLISH
 		)
 		res = wordDO.save()
 		ppp(res.to_dict())

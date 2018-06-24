@@ -11,10 +11,9 @@ class WordDataObject(BaseDataObject):
 
 	"""
 
-	ENGLISH_1 = 'english_word_1'
-	ENGLISH_2 = 'english_word_2'
+	ENGLISH = 'english_word'
 
-	TABLE_NAME = ENGLISH_1
+	TABLE_NAME = ENGLISH
 	DEFAULT_DB_DRIVER_CLASS = MySqlDriver
 	DEFAULT_CACHE_DRIVER_CLASS = RedisDriver
 	DEFAULT_CACHE_TTL = 3600
