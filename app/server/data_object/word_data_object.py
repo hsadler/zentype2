@@ -34,3 +34,8 @@ class WordDataObject(BaseDataObject):
 			db_driver_class=db_driver_class,
 			cache_driver_class=cache_driver_class
 		)
+
+
+
+
+

@@ -11,19 +11,18 @@ from utils.print import ppp
 language = WordDataObject.ENGLISH
 qwerty_difficulty_rank = {
 	'min': 0,
-	'max': 100
+	'max': 10000
 }
 frequency_rank = {
 	'min': 0,
-	'max': 100
+	'max': 10000
 }
 length = {
 	'min': 0,
-	'max': 20
+	'max': 100
 }
-substring = 'cat'
+substring = 'ba'
 limit = 10
-
 
 word_list = Word.get_random_list(
 	language=language,
@@ -31,9 +30,9 @@ word_list = Word.get_random_list(
 	frequency_rank=frequency_rank,
 	length=length,
 	substring=substring,
-	limit=limit,
+	limit=limit
 )
 
-
 ppp(word_list)
+ppp(len(word_list))
 
