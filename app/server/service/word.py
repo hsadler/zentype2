@@ -26,17 +26,6 @@ class Word():
 		substring=None,
 		limit=None,
 	):
-		# sample query:
-			# SELECT * FROM
-			# 	english_word
-			# WHERE qwerty_difficulty_rank > :qwerty_difficulty_rank_min
-			# AND qwerty_difficulty_rank < :qwerty_difficulty_rank_max
-			# AND frequency_rank > :frequency_rank_min
-			# AND frequency_rank < :frequency_rank_max
-			# AND length > :length_min
-			# AND length < :length_max
-			# AND like '%:substring%'
-			# LIMIT :limit;
 
 		mysql_driver = MySqlDriver(database_name=config.MYSQL_DB_NAME)
 

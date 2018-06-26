@@ -33,12 +33,11 @@ X word attributes
 	X frequency (usage rank)
 	X keyboard difficulty
 
-- queries for word search:
-	- contains substring
-	- is part of speech
-	- within length min and max
-	- within freq rank min and max
-	- within difficulty min and max
+X queries for word search:
+	X contains substring
+	X within length min and max
+	X within freq rank min and max
+	X within difficulty min and max
 
 
 WORD DIFFICULTY CALCULATION:
@@ -89,14 +88,16 @@ X key fingers:
 	Z:LP
 
 X Keyboard Service:
-	- create keyboard from config
-	- query keyboard for information about:
-		- key character(s)
-		- key position
-		- key difficulty
-		- key hand and finger
+	X create keyboard from config
+	X query keyboard for information about:
+		X key character(s)
+		X key position
+		X key difficulty
+		X key hand and finger
 
 TEST BUILDING
+
+- WpmTest
 
 
 TEST RESULTS
