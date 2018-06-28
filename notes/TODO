@@ -77,7 +77,6 @@ WPM TYPING TEST TODO:
 	X download/scrape from sources
 	X possible rating systems: difficulty, popularity, length
 	X searchable by letter contents
-	- consider punctuation
 
 - test builder
 	- possible params: difficulty, length

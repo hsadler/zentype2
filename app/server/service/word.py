@@ -9,11 +9,6 @@ class Word():
 	"""
 	Word Service
 
-	TODO:
-		- decide if all methods should be static
-		- stub out methods
-		- decide hierarchy with typing_test service
-
 	"""
 
 

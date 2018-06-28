@@ -95,10 +95,49 @@ X Keyboard Service:
 		X key difficulty
 		X key hand and finger
 
-TEST BUILDING
 
-- WpmTest
+TYPING TEST ARCHITECTURE
+
+	notes:
+	Typing tests will be built from words and based on constraint options. These
+	test will be stored in a table along with these attributes:
+		(min and max for the averages too?)
+		- avg_word_qwerty_difficulty_rank
+		- avg_word_frequency_rank
+		- avg_word_length
+		- word_count
+	Typing tests will be fetchable and assignabe to users. User assignments will
+	create a user typing test. User typing tests can have 2 possible states:
+		- pending
+		- complete
+
+	needed data objects:
+		- word
+		- typing test
+		- user typing test (pending tests / test results)
+
+	needed services:
+		- word
+		- typing test
+
+	needed APIs:
+		- typing test
 
 
-TEST RESULTS
+TYPING TEST BUILDING
+
+- build WPM typing test
+	- get_wpm_typing_test() GET endpoint
+		- possible params: difficulty, test length
+		- fetch words from db
+		- build test and return
+		- perhaps store pending tests in db or cache
+		- choose whether or not test results calculations are done on FE or BE
+	- submit_wpm_typing_test() POST endpoint
+		- send all words and timings
+		- store test_result with user_id
+		- think about ways to prevent forged requests cheating
+
+
+TYPING TEST RESULTS
 
