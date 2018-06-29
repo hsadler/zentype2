@@ -27,8 +27,10 @@ jwt = JWTManager(app)
 # register api routes
 from api.web.user_auth_api import user_auth_api
 from api.web.user_api import user_api
+from api.web.typing_test_api import typing_test_api
 app.register_blueprint(user_auth_api, url_prefix='/api/user-auth')
 app.register_blueprint(user_api, url_prefix='/api/user')
+app.register_blueprint(typing_test_api, url_prefix='/api/typing-test')
 
 
 # serve index for non-API calls

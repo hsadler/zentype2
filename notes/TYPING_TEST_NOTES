@@ -99,29 +99,30 @@ X Keyboard Service:
 TYPING TEST ARCHITECTURE
 
 	notes:
-	Typing tests will be built from words and based on constraint options. These
-	test will be stored in a table along with these attributes:
+	Typing tests will be built from words and based on attribute query options.
+	These tests will be stored in a table along with these test attributes:
 		(min and max for the averages too?)
 		- avg_word_qwerty_difficulty_rank
 		- avg_word_frequency_rank
 		- avg_word_length
 		- word_count
-	Typing tests will be fetchable and assignabe to users. User assignments will
-	create a user typing test. User typing tests can have 2 possible states:
+	Typing tests will be fetchable and assignable to users. User assignments
+	will create a user typing test. User typing tests can have 2 possible
+	states:
 		- pending
 		- complete
 
-	needed data objects:
-		- word
+	needed data objects (DB records):
+		X word
 		- typing test
 		- user typing test (pending tests / test results)
 
 	needed services:
-		- word
-		- typing test
+		X word
+		X typing test (stubbed)
 
 	needed APIs:
-		- typing test
+		X typing test (stubbed)
 
 
 TYPING TEST BUILDING
