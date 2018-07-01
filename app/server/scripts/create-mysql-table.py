@@ -31,28 +31,45 @@ mysql_driver = MySqlDriver(
 # 		updated_ts INT(11) NOT NULL,
 # 		# table specific columns here:
 # 		text VARCHAR(100) NOT NULL UNIQUE,
-# 		length INT(3),
+# 		length INT(3) UNSIGNED,
 # 		frequency DECIMAL(8, 6),
-# 		frequency_rank INT(11),
-# 		qwerty_difficulty INT(11),
-# 		qwerty_difficulty_rank INT(11)
+# 		frequency_rank INT(11) UNSIGNED,
+# 		qwerty_difficulty INT(11) UNSIGNED,
+# 		qwerty_difficulty_rank INT(11) UNSIGNED
 # 	)
 # """
 
-# create english_word_2 table
+# create typing_test table
 # create_table_query = """
-# 	CREATE TABLE IF NOT EXISTS english_word_2 (
+# 	CREATE TABLE IF NOT EXISTS typing_test (
 # 		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 # 		created_ts INT(11) NOT NULL,
 # 		updated_ts INT(11) NOT NULL,
 # 		# table specific columns here:
-# 		text VARCHAR(100) NOT NULL,
-# 		length INT(3),
-# 		part_of_speech VARCHAR(50),
-# 		frequency INT(11),
-# 		frequency_rank INT(11),
-# 		qwerty_difficulty INT(11),
-# 		qwerty_difficulty_rank INT(11)
+# 		language INT(3) UNSIGNED NOT NULL,
+# 		word_count INT(4) UNSIGNED NOT NULL,
+# 		min_word_length INT(3) UNSIGNED NOT NULL,
+# 		max_word_length INT(3) UNSIGNED NOT NULL,
+# 		avg_word_length INT(3) UNSIGNED NOT NULL,
+# 		min_word_frequency_rank INT(11) UNSIGNED NOT NULL,
+# 		max_word_frequency_rank INT(11) UNSIGNED NOT NULL,
+# 		avg_word_frequency_rank INT(11) UNSIGNED NOT NULL,
+# 		min_word_qwerty_difficulty_rank INT(11) UNSIGNED NOT NULL,
+# 		max_word_qwerty_difficulty_rank INT(11) UNSIGNED NOT NULL,
+# 		avg_word_qwerty_difficulty_rank INT(11) UNSIGNED NOT NULL
+# 	)
+# """
+
+# create typing_test_content table
+# create_table_query = """
+# 	CREATE TABLE IF NOT EXISTS typing_test_content (
+# 		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+# 		created_ts INT(11) NOT NULL,
+# 		updated_ts INT(11) NOT NULL,
+# 		# table specific columns here:
+# 		typing_test_id INT(6) UNSIGNED NOT NULL,
+# 		word_id INT(6) UNSIGNED NOT NULL,
+# 		position INT(4) UNSIGNED NOT NULL
 # 	)
 # """
 

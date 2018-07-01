@@ -100,29 +100,33 @@ TYPING TEST ARCHITECTURE
 
 	notes:
 	Typing tests will be built from words and based on attribute query options.
-	These tests will be stored in a table along with these test attributes:
-		(min and max for the averages too?)
+	What makes up a typing test?:
+		- typing_test_id
+		- word_ids (typing_test_content table)
+		- language
+		- word_count
 		- avg_word_qwerty_difficulty_rank
 		- avg_word_frequency_rank
 		- avg_word_length
-		- word_count
+		- (min and max for the averages too?)
+	These tests will be stored like so:
 	Typing tests will be fetchable and assignable to users. User assignments
 	will create a user typing test. User typing tests can have 2 possible
 	states:
 		- pending
 		- complete
-
 	needed data objects (DB records):
 		X word
-		- typing test
+		- typing test (stubbed)
+		- typing test content (stubbed)
 		- user typing test (pending tests / test results)
 
 	needed services:
 		X word
-		X typing test (stubbed)
+		- typing test (stubbed)
 
 	needed APIs:
-		X typing test (stubbed)
+		- typing test (stubbed)
 
 
 TYPING TEST BUILDING
