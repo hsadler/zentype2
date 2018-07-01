@@ -109,17 +109,28 @@ TYPING TEST ARCHITECTURE
 		- avg_word_frequency_rank
 		- avg_word_length
 		- (min and max for the averages too?)
-	These tests will be stored like so:
 	Typing tests will be fetchable and assignable to users. User assignments
-	will create a user typing test. User typing tests can have 2 possible
-	states:
-		- pending
-		- complete
-	needed data objects (DB records):
+	will create a user typing test.
+	What makes up a user_typing_test?:
+		X typing_test_id
+		X user_id
+		X status (pending or complete)
+		X words_ids (map to user_typing_test_content table)
+		X test_time
+		X wpm
+	user_typing_test_content attributes:
+		X user_typing_test_id
+		X word_id
+		X position
+		X attempted
+		X completed_correctly
+		X completion_time
+	needed data objects (DB tables):
 		X word
 		- typing test (stubbed)
 		- typing test content (stubbed)
 		- user typing test (pending tests / test results)
+		- user typing test content
 
 	needed services:
 		X word
