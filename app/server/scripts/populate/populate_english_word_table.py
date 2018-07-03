@@ -9,6 +9,7 @@ from utils.print import ppp
 
 keyboard = Keyboard(Keyboard.QWERTY, Language.ENGLISH)
 
+
 with open('../../sources/word_sources/number27.org/words_90K.txt', 'r') as file:
 	for line_index, line in enumerate(file):
 		parts = [x.strip('() ') for x in line.split(',')]

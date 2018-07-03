@@ -3,6 +3,8 @@
 
 import config.config as config
 from data_store.database_driver.mysql_driver import MySqlDriver
+from data_object.word_data_object import WordDataObject
+from service.language import Language
 
 
 class Word():
@@ -28,7 +30,9 @@ class Word():
 		bind_vars = {}
 
 		# select component
-		sql_parts.append('SELECT * FROM {0}'.format(language))
+		table_name = WordDataObject\
+			.LANGUAGE_TYPE_TO_WORD_TABLE[language.get_type()]
+		sql_parts.append('SELECT * FROM {0}'.format(table_name))
 
 		# where clause components
 		where_parts = []
@@ -58,5 +62,9 @@ class Word():
 		sql = ' '.join(sql_parts)
 
 		result = mysql_driver.query_bind(sql, bind_vars)
-		return result
+		wordDOs = [
+			WordDataObject.create(prop_dict=x, language=language)
+			for x in result
+		]
+		return wordDOs
 

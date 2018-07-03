@@ -12,15 +12,28 @@ from flask_jwt_simple import (
 typing_test_api = Blueprint('typing_test_api', __name__)
 
 
-@typing_test_api.route('/test', methods=['GET'])
+@typing_test_api.route('/get-wpm-test', methods=['GET'])
 @jwt_required
-def test():
+def get_wpm_test():
 	"""
-	Test API endpoint.
+	Get a WPM typing test.
 
 	"""
 
-	res = { message: 'hi there' }
+	res = { message: 'here is your test...' }
+
+	return jsonify(res)
+
+
+@typing_test_api.route('/submit-wpm-test', methods=['POST'])
+@jwt_required
+def submit_wpm_test():
+	"""
+	Submit a WPM typing test.
+
+	"""
+
+	res = { message: 'your test has been submitted...' }
 
 	return jsonify(res)
 

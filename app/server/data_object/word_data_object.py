@@ -11,9 +11,10 @@ class WordDataObject(BaseDataObject):
 
 	"""
 
-	ENGLISH = 'english_word'
-
-	TABLE_NAME = ENGLISH
+	LANGUAGE_TYPE_TO_WORD_TABLE = {
+		1: 'english_word'
+	}
+	TABLE_NAME = LANGUAGE_TYPE_TO_WORD_TABLE[1]
 	DEFAULT_DB_DRIVER_CLASS = MySqlDriver
 	DEFAULT_CACHE_DRIVER_CLASS = RedisDriver
 	DEFAULT_CACHE_TTL = 3600
@@ -28,7 +29,8 @@ class WordDataObject(BaseDataObject):
 		language=None
 	):
 		if language is not None:
-			cls.TABLE_NAME = language
+			language_type = language.get_type()
+			cls.TABLE_NAME = cls.LANGUAGE_TYPE_TO_WORD_TABLE[language_type]
 		return super().create(
 			prop_dict=prop_dict,
 			db_driver_class=db_driver_class,
@@ -36,6 +38,22 @@ class WordDataObject(BaseDataObject):
 		)
 
 
-
-
+	@classmethod
+	def find_one(
+		cls,
+		prop_dict={},
+		db_driver_class=None,
+		cache_driver_class=None,
+		cache_ttl=None,
+		language=None
+	):
+		if language is not None:
+			language_type = language.get_type()
+			cls.TABLE_NAME = cls.LANGUAGE_TYPE_TO_WORD_TABLE[language_type]
+		return super().find_one(
+			prop_dict=prop_dict,
+			db_driver_class=db_driver_class,
+			cache_driver_class=cache_driver_class,
+			cache_ttl=cache_ttl
+		)
 

@@ -12,6 +12,7 @@ class Language():
 	# settings per language
 
 	ENGLISH = {
+		'type': 1,
 		'letter_frequencies': {
 			'E': 12.02,
 			'T': 9.10,
@@ -42,8 +43,15 @@ class Language():
 		}
 	}
 
+
 	def __init__(self, language):
+		self.type = language['type']
 		self.letter_frequencies = language['letter_frequencies']
+
+
+	def get_type(self):
+		return self.type
+
 
 	def get_letter_frequency(self, letter):
 		if letter in self.letter_frequencies:

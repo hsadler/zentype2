@@ -4,11 +4,12 @@ sys.path.append('..')
 
 from data_object.word_data_object import WordDataObject
 from service.word import Word
+from service.language import Language
 from utils.print import ppp
 
 
 # random word list options
-language = WordDataObject.ENGLISH
+language = Language(Language.ENGLISH)
 qwerty_difficulty_rank = {
 	'min': 0,
 	'max': 10000
@@ -34,5 +35,7 @@ word_list = Word.get_random_list(
 )
 
 ppp(word_list)
-ppp(len(word_list))
+for wordDO in word_list:
+	ppp(wordDO.to_dict())
+ppp("length: {0}".format(len(word_list)))
 
