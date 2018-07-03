@@ -23,7 +23,7 @@ word_length = {
 }
 word_count = 10
 
-typing_test = TypingTest.build_wpm_typing_test_from_random_words(
+typing_test = TypingTest.build_wpm_typing_test(
 	language=language,
 	word_qwerty_difficulty_rank=word_qwerty_difficulty_rank,
 	word_frequency_rank=word_frequency_rank,
