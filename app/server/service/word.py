@@ -54,6 +54,9 @@ class Word():
 			bind_vars['substring'] = '%{0}%'.format(substring)
 		sql_parts.append('WHERE {0}'.format(' AND '.join(where_parts)))
 
+		# random component
+		sql_parts.append('ORDER BY RAND()')
+
 		# limit component
 		if limit is not None:
 			sql_parts.append('LIMIT %(limit)s')

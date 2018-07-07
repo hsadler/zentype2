@@ -31,5 +31,7 @@ typing_test = TypingTest.build_wpm_typing_test(
 	word_count=word_count,
 )
 
-ppp(typing_test)
+ppp(typing_test.typing_test.to_dict())
+ppp([x.to_dict() for x in typing_test.typing_test_content])
+
 
