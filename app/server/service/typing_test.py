@@ -25,7 +25,7 @@ class TypingTest():
 	############################################################################
 
 	@classmethod
-	def build_wpm_typing_test(
+	def build_and_save_wpm_typing_test(
 		cls,
 		language,
 		word_qwerty_difficulty_rank=None,
